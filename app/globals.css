@@ -12,8 +12,8 @@
   --color-gray-500: #64748b;
   --color-border: rgba(255, 255, 255, 0.08);
 
-  --font-sans: var(--font-sans), "DM Sans", system-ui, sans-serif;
-  --font-serif: var(--font-serif), "Instrument Serif", Georgia, serif;
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
 }
 
 html {
@@ -21,8 +21,6 @@ html {
 }
 
 body {
-  background: var(--color-navy);
-  color: #fff;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -66,4 +64,13 @@ body::before {
 
 @utility animate-pulse-dot {
   animation: pulseDot 2s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

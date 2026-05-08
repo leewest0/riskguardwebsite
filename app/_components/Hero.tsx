@@ -42,7 +42,7 @@ export function Hero() {
       </div>
 
       <h1
-        className="relative font-serif text-white max-w-[820px] mb-6 animate-fade-up"
+        className="relative font-serif text-white max-w-205 mb-6 animate-fade-up"
         style={{
           fontSize: "clamp(44px, 7vw, 80px)",
           lineHeight: 1.08,
@@ -59,7 +59,7 @@ export function Hero() {
       </h1>
 
       <p
-        className="relative text-gray-300 max-w-[520px] mb-11 font-light animate-fade-up"
+        className="relative text-gray-300 max-w-130 mb-11 font-light animate-fade-up"
         style={{
           fontSize: "clamp(16px, 2vw, 19px)",
           lineHeight: 1.65,
@@ -71,7 +71,7 @@ export function Hero() {
       </p>
 
       <div
-        className="relative flex items-center flex-wrap justify-center gap-4 mb-[72px] animate-fade-up"
+        className="relative flex items-center flex-wrap justify-center gap-4 mb-18 animate-fade-up"
         style={{ animationDelay: "0.3s" }}
       >
         <a
@@ -86,7 +86,7 @@ export function Hero() {
         </a>
         <a
           href="#"
-          className="text-[15px] font-normal text-gray-300 hover:text-white bg-transparent border border-white/[0.08] hover:border-white/20 hover:bg-white/[0.04] rounded-[10px] px-7 py-3.5 transition-all inline-flex items-center gap-2"
+          className="text-[15px] font-normal text-gray-300 hover:text-white bg-transparent border border-white/8 hover:border-white/20 hover:bg-white/4 rounded-[10px] px-7 py-3.5 transition-all inline-flex items-center gap-2"
         >
           <span aria-hidden>▶</span>
           Watch 2-min walkthrough

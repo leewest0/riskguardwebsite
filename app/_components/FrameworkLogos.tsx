@@ -9,8 +9,8 @@ const FRAMEWORKS = [
 
 export function FrameworkLogos() {
   return (
-    <div className="py-15 px-6 text-center border-y border-white/[0.08]">
-      <p className="text-xs text-gray-500 uppercase tracking-[0.1em] mb-8">
+    <div className="py-15 px-6 text-center border-y border-white/8">
+      <p className="text-xs text-gray-500 uppercase tracking-widest mb-8">
         Supports all major compliance frameworks
       </p>
       <div className="flex items-center justify-center gap-12 flex-wrap">

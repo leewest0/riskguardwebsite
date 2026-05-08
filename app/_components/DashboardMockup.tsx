@@ -1,4 +1,5 @@
 import { LogoMark } from "./Logo";
+import { FadeUp } from "./FadeUp";
 
 const SIDEBAR_ITEMS = [
   { icon: "📊", label: "Dashboard", active: true },
@@ -64,10 +65,7 @@ function Badge({ tone, children }: { tone: "green" | "yellow" | "red"; children:
 export function DashboardMockup() {
   return (
     <section className="relative px-6 pb-24 flex justify-center">
-      <div
-        className="relative max-w-[1100px] w-full animate-fade-up"
-        style={{ animationDelay: "0.5s" }}
-      >
+      <FadeUp className="relative max-w-275 w-full">
         <div
           className="absolute -inset-10 pointer-events-none"
           style={{
@@ -77,25 +75,25 @@ export function DashboardMockup() {
         />
 
         <div
-          className="relative rounded-2xl overflow-hidden border border-white/[0.08] bg-navy-light"
+          className="relative rounded-2xl overflow-hidden border border-white/8 bg-navy-light"
           style={{
             boxShadow:
               "0 40px 120px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05)",
           }}
         >
-          <div className="flex items-center gap-2 px-4 py-3 bg-navy-mid border-b border-white/[0.08]">
+          <div className="flex items-center gap-2 px-4 py-3 bg-navy-mid border-b border-white/8">
             <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
             <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
             <span className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
-            <div className="flex-1 max-w-[300px] mx-auto bg-white/5 rounded-md px-3 py-1 text-[12px] text-gray-500 text-center">
+            <div className="flex-1 max-w-75 mx-auto bg-white/5 rounded-md px-3 py-1 text-[12px] text-gray-500 text-center">
               app.riskguardhq.com
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] min-h-[420px] p-6">
-            <div className="hidden md:flex flex-col gap-1 bg-white/[0.02] border-r border-white/[0.08] p-3">
+          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] min-h-105 p-6">
+            <div className="hidden md:flex flex-col gap-1 bg-white/2 border-r border-white/8 p-3">
               <div className="flex items-center gap-2 px-2.5 pt-2 pb-4 text-[13px] font-semibold text-white">
-                <LogoMark size={22} glow={false} />
+                <LogoMark size={22} />
                 RiskGuard
               </div>
               {SIDEBAR_ITEMS.map((item) => (
@@ -118,19 +116,19 @@ export function DashboardMockup() {
                 <span className="text-base font-semibold text-white">
                   Risk Dashboard
                 </span>
-                <button
-                  type="button"
-                  className="text-[11px] bg-accent text-white rounded-md px-3 py-1.5 cursor-default"
+                <div
+                  aria-hidden="true"
+                  className="text-[11px] bg-accent text-white rounded-md px-3 py-1.5 select-none"
                 >
                   + Add Risk
-                </button>
+                </div>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                 {STATS.map((stat) => (
                   <div
                     key={stat.label}
-                    className="bg-white/[0.03] border border-white/[0.08] rounded-lg p-3"
+                    className="bg-white/3 border border-white/8 rounded-lg p-3"
                   >
                     <div className="text-[10px] text-gray-500 mb-1">
                       {stat.label}
@@ -145,8 +143,8 @@ export function DashboardMockup() {
                 ))}
               </div>
 
-              <div className="bg-white/[0.02] border border-white/[0.08] rounded-lg overflow-hidden">
-                <div className="grid grid-cols-[2fr_1fr_1fr_1fr] px-3.5 py-2.5 border-b border-white/[0.08] text-[10px] uppercase tracking-wider text-gray-500">
+              <div className="bg-white/2 border border-white/8 rounded-lg overflow-hidden">
+                <div className="grid grid-cols-[2fr_1fr_1fr_1fr] px-3.5 py-2.5 border-b border-white/8 text-[10px] uppercase tracking-wider text-gray-500">
                   <span>Risk Name</span>
                   <span>Level</span>
                   <span>Framework</span>
@@ -155,7 +153,7 @@ export function DashboardMockup() {
                 {RISKS.map((risk) => (
                   <div
                     key={risk.name}
-                    className="grid grid-cols-[2fr_1fr_1fr_1fr] px-3.5 py-2.5 border-b border-white/[0.03] text-[11px] text-gray-300 items-center last:border-b-0"
+                    className="grid grid-cols-[2fr_1fr_1fr_1fr] px-3.5 py-2.5 border-b border-white/3 text-[11px] text-gray-300 items-center last:border-b-0"
                   >
                     <span>{risk.name}</span>
                     <span>
@@ -171,7 +169,7 @@ export function DashboardMockup() {
             </div>
           </div>
         </div>
-      </div>
+      </FadeUp>
     </section>
   );
 }

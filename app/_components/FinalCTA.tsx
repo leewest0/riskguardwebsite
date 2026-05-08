@@ -1,4 +1,5 @@
 import { CALENDLY_URL } from "./config";
+import { FadeUp } from "./FadeUp";
 
 export function FinalCTA() {
   return (
@@ -14,8 +15,8 @@ export function FinalCTA() {
         }}
       />
 
-      <div
-        className="relative max-w-[680px] mx-auto bg-navy-light rounded-3xl px-8 py-16 sm:px-12"
+      <FadeUp
+        className="relative max-w-170 mx-auto bg-navy-light rounded-3xl px-8 py-16 sm:px-12"
         style={{
           border: "1px solid rgba(79,110,247,0.2)",
           boxShadow: "0 0 80px rgba(79,110,247,0.1)",
@@ -48,14 +49,8 @@ export function FinalCTA() {
           >
             Book a Free Demo →
           </a>
-          <a
-            href="#"
-            className="text-[15px] font-normal text-gray-300 hover:text-white bg-transparent border border-white/[0.08] hover:border-white/20 hover:bg-white/[0.04] rounded-[10px] px-7 py-3.5 transition-all inline-flex items-center gap-2"
-          >
-            Start free trial
-          </a>
         </div>
-      </div>
+      </FadeUp>
     </section>
   );
 }

@@ -1,3 +1,5 @@
+import { FadeUp } from "./FadeUp";
+
 const FEATURES = [
   {
     icon: "📋",
@@ -33,12 +35,12 @@ const FEATURES = [
 
 export function Features() {
   return (
-    <section id="features" className="py-24 px-6 max-w-[1200px] mx-auto">
-      <p className="text-xs font-medium text-accent-bright uppercase tracking-[0.1em] mb-4 text-center">
+    <section id="features" className="py-24 px-6 max-w-300 mx-auto">
+      <p className="text-xs font-medium text-accent-bright uppercase tracking-widest mb-4 text-center">
         Everything you need
       </p>
       <h2
-        className="font-serif text-white max-w-[600px] mx-auto mb-4 text-center"
+        className="font-serif text-white max-w-150 mx-auto mb-4 text-center"
         style={{
           fontSize: "clamp(32px, 5vw, 52px)",
           lineHeight: 1.1,
@@ -47,13 +49,14 @@ export function Features() {
       >
         GRC without the complexity
       </h2>
-      <p className="text-[17px] text-gray-300 text-center max-w-[500px] mx-auto mb-16 font-light leading-relaxed">
+      <p className="text-[17px] text-gray-300 text-center max-w-125 mx-auto mb-16 font-light leading-relaxed">
         Everything a growing UK tech company needs to get audit-ready — in one
         platform.
       </p>
 
+      <FadeUp>
       <div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px rounded-2xl overflow-hidden border border-white/[0.08]"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px rounded-2xl overflow-hidden border border-white/8"
         style={{ background: "rgba(255,255,255,0.08)" }}
       >
         {FEATURES.map((f) => (
@@ -86,6 +89,7 @@ export function Features() {
           </div>
         ))}
       </div>
+      </FadeUp>
     </section>
   );
 }

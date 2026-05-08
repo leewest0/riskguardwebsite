@@ -9,9 +9,9 @@ const FOOTER_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="px-6 md:px-12 py-10 border-t border-white/[0.08] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <footer className="px-6 md:px-12 py-10 border-t border-white/8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
       <div className="flex items-center gap-2.5 text-[13px] text-gray-500">
-        <LogoMark size={24} glow={false} />
+        <LogoMark size={24} />
         <span>© 2026 TrusTrak Solutions Ltd. London, UK.</span>
       </div>
       <div className="flex gap-6">

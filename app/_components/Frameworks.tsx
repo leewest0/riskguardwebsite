@@ -1,3 +1,5 @@
+import { FadeUp } from "./FadeUp";
+
 const FRAMEWORKS = [
   { name: "ISO 27001", type: "Information Security", color: "#4F6EF7" },
   { name: "SOC 2", type: "Trust & Security", color: "#0CCFB0" },
@@ -32,11 +34,11 @@ export function Frameworks() {
   return (
     <section
       id="frameworks"
-      className="py-24 px-6 bg-navy-mid border-y border-white/[0.08]"
+      className="py-24 px-6 bg-navy-mid border-y border-white/8"
     >
-      <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+      <FadeUp className="max-w-300 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
         <div>
-          <p className="text-xs font-medium text-accent-bright uppercase tracking-[0.1em] mb-4">
+          <p className="text-xs font-medium text-accent-bright uppercase tracking-widest mb-4">
             Multi-framework
           </p>
           <h2
@@ -61,10 +63,10 @@ export function Frameworks() {
             {FRAMEWORKS.map((fw) => (
               <div
                 key={fw.name}
-                className="bg-navy border border-white/[0.08] hover:border-accent/30 rounded-[10px] px-4 py-4 flex items-center gap-3 transition-colors"
+                className="bg-navy border border-white/8 hover:border-accent/30 rounded-[10px] px-4 py-4 flex items-center gap-3 transition-colors"
               >
                 <span
-                  className="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                  className="w-2.5 h-2.5 rounded-full shrink-0"
                   style={{ background: fw.color }}
                 />
                 <div>
@@ -80,7 +82,7 @@ export function Frameworks() {
           </div>
         </div>
 
-        <div className="bg-navy border border-white/[0.08] rounded-2xl p-8 text-center">
+        <div className="bg-navy border border-white/8 rounded-2xl p-8 text-center">
           <div className="text-5xl mb-4" aria-hidden>
             🛡️
           </div>
@@ -108,7 +110,7 @@ export function Frameworks() {
             ))}
           </div>
         </div>
-      </div>
+      </FadeUp>
     </section>
   );
 }

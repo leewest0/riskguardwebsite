@@ -1,3 +1,5 @@
+import { FadeUp } from "./FadeUp";
+
 const STATS = [
   {
     value: "6",
@@ -18,8 +20,8 @@ const STATS = [
 
 export function Stats() {
   return (
-    <section className="py-24 px-6 max-w-[1000px] mx-auto text-center">
-      <p className="text-xs font-medium text-accent-bright uppercase tracking-[0.1em] mb-4">
+    <section className="py-24 px-6 max-w-250 mx-auto text-center">
+      <p className="text-xs font-medium text-accent-bright uppercase tracking-widest mb-4">
         By the numbers
       </p>
       <h2
@@ -35,8 +37,9 @@ export function Stats() {
         that move fast
       </h2>
 
+      <FadeUp>
       <div
-        className="grid grid-cols-1 md:grid-cols-3 gap-px rounded-2xl overflow-hidden border border-white/[0.08] mt-15"
+        className="grid grid-cols-1 md:grid-cols-3 gap-px rounded-2xl overflow-hidden border border-white/8 mt-15"
         style={{ background: "rgba(255,255,255,0.08)" }}
       >
         {STATS.map((stat) => (
@@ -52,6 +55,7 @@ export function Stats() {
           </div>
         ))}
       </div>
+      </FadeUp>
     </section>
   );
 }

@@ -1,1 +1,11 @@
 @AGENTS.md
+@.claude/soul.md
+@.claude/metacognition.md
+@.claude/security-redlines.md
+@.claude/context.md
+@.claude/product.md
+@.claude/tech.md
+@.claude/design.md
+@.claude/guidelines.md
+@.claude/structure.md
+@.claude/progress.md
