@@ -1,10 +1,11 @@
+import Link from "next/link";
 import { LogoMark } from "./Logo";
 
 const FOOTER_LINKS = [
-  { href: "#", label: "Privacy" },
-  { href: "#", label: "Terms" },
-  { href: "#", label: "Security" },
-  { href: "#", label: "Contact" },
+  { href: "/privacy", label: "Privacy" },
+  { href: "/terms", label: "Terms" },
+  { href: "/security", label: "Security" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Footer() {
@@ -16,13 +17,13 @@ export function Footer() {
       </div>
       <div className="flex gap-6">
         {FOOTER_LINKS.map((link) => (
-          <a
+          <Link
             key={link.label}
             href={link.href}
             className="text-[13px] text-gray-500 hover:text-gray-300 transition-colors"
           >
             {link.label}
-          </a>
+          </Link>
         ))}
       </div>
     </footer>
