@@ -16,7 +16,7 @@ function AboutHero() {
       {/* Globe — sits behind everything */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div
-          className="w-[560px] h-[560px] md:w-[760px] md:h-[760px] pointer-events-auto"
+          className="w-140 h-140 md:w-190 md:h-190 pointer-events-auto"
           style={{
             maskImage:
               "radial-gradient(ellipse 75% 75% at 50% 50%, black 40%, transparent 72%)",

@@ -10,8 +10,8 @@
 
 | Name | Hex / Value | CSS token | Usage |
 |---|---|---|---|
-| Accent | #4F6EF7 | `--color-accent` | Buttons, links, active states, icon backgrounds |
-| Accent bright | #6B8AFF | `--color-accent-bright` | Hover states, eyebrow tags, gradient highlights |
+| Accent | #1F4DC4 | `--color-accent` | Buttons, links, active states, icon backgrounds |
+| Accent bright | #1F4DC4 | `--color-accent-bright` | Hover states, eyebrow tags, gradient highlights |
 | Teal | #0CCFB0 | — | Secondary highlights, success states |
 | Purple | #A855F7 | — | GDPR framework badge |
 
