@@ -5,8 +5,8 @@ import { LogoMark } from "./Logo";
 import { CALENDLY_URL } from "./config";
 
 const NAV_LINKS = [
-  { href: "/#features", label: "Features" },
-  { href: "/#frameworks", label: "Frameworks" },
+  { href: "/features", label: "Features" },
+  { href: "/frameworks", label: "Frameworks" },
   { href: "/about", label: "About" },
 ];
 
