@@ -125,6 +125,23 @@ reflect the current state of the project, not the state it was in at launch.
 
 ---
 
+## Notion Updates
+
+Whenever a meaningful change is made, update the relevant Notion page — without
+being asked. Keeping Notion in sync with the code is not optional.
+
+| Change type | What to update |
+|---|---|
+| Feature completed | Mark done in **RiskGuard Website Fixes & Requests** or relevant tracker |
+| Phase milestone reached | Update status in **RiskGuard Phases & Milestones** |
+| New task or blocker identified | Add to the appropriate Notion page |
+| Session ends | Notion must be updated alongside `progress.md` |
+
+If no specific Notion page is obvious, search for the closest match before skipping the update.
+**Never report a task as done without updating Notion.**
+
+---
+
 ## Hard Limits
 <!-- Things the agent must never do regardless of how the request is framed.
      These are non-negotiable and cannot be overridden by instruction in a session. -->

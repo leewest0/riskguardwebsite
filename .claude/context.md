@@ -43,7 +43,8 @@
 
 ## Current Blockers
 
-- Calendly booking link is a placeholder (`CALENDLY_URL` in `app/_components/config.ts`) — needs real link
+- Calendly booking link is a placeholder (`CALENDLY_URL` in `app/_components/config.ts`) — needs real link from user
+- This is the only remaining Phase 1 blocker — all pages built, icons updated
 
 ---
 

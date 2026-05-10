@@ -1,33 +1,42 @@
+import {
+  Bot,
+  CheckSquare,
+  ClipboardList,
+  FileBarChart,
+  FolderLock,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
 import { FadeUp } from "./FadeUp";
 
-const FEATURES = [
+const FEATURES: { icon: LucideIcon; title: string; desc: string }[] = [
   {
-    icon: "📋",
+    icon: ClipboardList,
     title: "Risk Register",
     desc: "Document, score, and track every risk with automated likelihood and impact scoring. Assign owners and monitor remediation progress in real time.",
   },
   {
-    icon: "✅",
+    icon: CheckSquare,
     title: "Controls Library",
     desc: "Pre-built controls mapped to ISO 27001, SOC 2, NIST, PCI DSS, and GDPR. Import via CSV or build your own — then track testing across audits.",
   },
   {
-    icon: "📁",
+    icon: FolderLock,
     title: "Evidence Locker",
     desc: "Secure file storage with SHA-256 integrity verification. Every piece of audit evidence is tamper-evident and ready for external auditors.",
   },
   {
-    icon: "🤖",
+    icon: Bot,
     title: "AI Advisor",
     desc: "Ask Claude anything about your compliance posture. Get risk guidance, control recommendations, and audit prep advice — in plain English.",
   },
   {
-    icon: "👥",
+    icon: Users,
     title: "External Auditor Portal",
     desc: "Generate secure, time-limited access tokens for external auditors. They get scoped access to evidence — nothing more, nothing less.",
   },
   {
-    icon: "📊",
+    icon: FileBarChart,
     title: "PDF Audit Reports",
     desc: "One-click executive reports with compliance scores, control status, and findings. Board-ready, auditor-approved, automatically generated.",
   },
@@ -72,13 +81,13 @@ export function Features() {
               }}
             />
             <div
-              className="w-11 h-11 rounded-[10px] flex items-center justify-center text-xl mb-5"
+              className="w-11 h-11 rounded-[10px] flex items-center justify-center mb-5"
               style={{
                 background: "rgba(79,110,247,0.15)",
                 border: "1px solid rgba(79,110,247,0.2)",
               }}
             >
-              {f.icon}
+              <f.icon size={20} className="text-accent-bright" aria-hidden="true" />
             </div>
             <h3 className="text-base font-semibold text-white mb-2.5 tracking-tight">
               {f.title}
