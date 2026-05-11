@@ -8,7 +8,7 @@
 
 **Project Name:** RiskGuard
 **Description:** GRC SaaS platform for UK tech startups. Provides risk registers, controls libraries mapped to ISO 27001/SOC 2/NIST/PCI DSS/GDPR/HIPAA, tamper-evident evidence storage, AI compliance advisor, external auditor portal, and PDF audit reports. Built and operated by TrusTrak Solutions Ltd, a private limited company registered in England & Wales, headquartered in London.
-**Current Phase:** Phase 1 — Marketing website
+**Current Phase:** Phase 2 — AI-Automated Risk Management
 **Overall Status:** 🟢 On track
 
 ---
@@ -17,11 +17,11 @@
 
 | Phase | Name | Status | Notes |
 |---|---|---|---|
-| 1 | Marketing website | 🔄 In progress | Landing page + About page live. Several footer dead links to fix (Privacy, Terms, Security, Contact). |
-| 2 | Authentication & core app | ⏳ Pending | User accounts, onboarding |
-| 3 | GRC feature modules | ⏳ Pending | Risk register, controls library, evidence locker |
-| 4 | AI Advisor | ⏳ Pending | Claude API integration |
-| 5 | Auditor portal + PDF reporting | ⏳ Pending | Time-limited tokens, PDF generation |
+| 1 | Marketing Website | ✅ Complete | All pages live, Calendly URL set, Lucide icons, /features and /frameworks pages — complete 11 May 2026 |
+| 2 | AI-Automated Risk Management | 🔄 In progress | Inject Claude into full risk entry flow — description to mitigation, scoring, control mapping |
+| 3 | Multi-Tenant Setup | ⏳ Pending | Subscription & billing, admin monitoring, usage limits per plan |
+| 4 | Integrations | ⏳ Pending | Slack, Jira, Microsoft Teams — Q3 target |
+| 5 | Pricing & Payments | ⏳ Pending | Stripe billing, plan tiers, upgrade/downgrade flows |
 
 ---
 
@@ -43,8 +43,7 @@
 
 ## Current Blockers
 
-- Calendly booking link is a placeholder (`CALENDLY_URL` in `app/_components/config.ts`) — needs real link from user
-- This is the only remaining Phase 1 blocker — all pages built, icons updated
+- No active blockers. Phase 1 complete. Phase 2 planning in progress.
 
 ---
 
@@ -64,10 +63,9 @@
 
 ---
 
-## Out of Scope (Phase 1)
+## Out of Scope (Phase 2)
 
-- No backend, database, or authentication
-- No Pricing page (deferred)
-- No real dashboard screenshot (DashboardMockup is a coded mockup)
-- No actual Lucide icons (emoji placeholders for now)
-- No privacy/terms/legal pages (dead links to be built in Phase 1 completion)
+- No UI rebuild — Claude wires into the existing risk modal, no new components
+- No self-serve billing yet (Phase 5)
+- No multi-tenancy changes (Phase 3)
+- No third-party integrations (Phase 4)

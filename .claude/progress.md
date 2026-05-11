@@ -6,15 +6,18 @@
 
 ## 🔖 Current State
 
-**As of:** 2026-05-10
+**As of:** 2026-05-11
 
-Phase 1 (marketing website) is in progress. Landing page (`/`) and About page (`/about`) are built and functional. Four footer pages (`/privacy`, `/terms`, `/security`, `/contact`) were built between sessions. Emoji icons in `Features.tsx` have now been replaced with Lucide React icons. Remaining Phase 1 work: update the Calendly placeholder URL in `config.ts`.
+Phase 1 (marketing website) is **complete**. All pages built, Calendly URL live, Lucide icons, /features and /frameworks pages added. Now entering Phase 2 — AI-Automated Risk Management: inject Claude into the full risk entry flow so users type one plain-English description and Claude handles scoring, categorisation, mitigation, and control mapping.
 
 ---
 
 ## ✅ Next Session Must Start With
 
-1. Update `CALENDLY_URL` in `app/_components/config.ts` with the real Calendly link (only remaining Phase 1 blocker)
+1. **Phase 2 — AI-Automated Risk Management.** Begin implementation planning.
+2. Single Claude API call triggered on risk description input → structured JSON response: `{ title, category, likelihood, likelihood_rationale, impact, impact_rationale, suggested_controls[], mitigation_steps[] }`
+3. Wire Claude output into existing risk modal fields — all fields remain fully editable (suggestion, not a lock)
+4. Roadmap after Phase 2: Multi-Tenant Setup (Phase 3) → Integrations: Slack, Jira, Teams (Phase 4) → Pricing & Payments/Stripe (Phase 5)
 
 ---
 
