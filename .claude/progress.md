@@ -23,6 +23,51 @@ Phase 1 (marketing website) is **complete**. All pages built, Calendly URL live,
 
 ## 📋 Session Log
 
+### Session — 2026-05-11
+
+**Summary:**
+Completed the last Phase 1 item (Calendly URL), synced phases in context.md and progress.md with Notion roadmap, and built a full GDPR-compliant cookie consent system.
+
+**Completed:**
+- Set real `CALENDLY_URL` → `https://calendly.com/leebotchway0/riskguard-demo` — Phase 1 officially complete
+- Synced `context.md` and `progress.md` phases with Notion (Phases 2–5 now match Notion roadmap)
+- Built `CookieConsent.tsx` — bottom banner + slide-up preferences panel (Essential + Analytics)
+- Built `CookieSettingsLink.tsx` — client component in footer, fires custom event to reopen panel
+- Updated `layout.tsx` — `<CookieConsent />` mounted at root
+- Updated `Footer.tsx` — Cookie Settings link added
+
+**Files Modified:**
+| File | Change |
+|---|---|
+| `app/_components/config.ts` | Real Calendly URL |
+| `.claude/context.md` | Phases synced to Notion roadmap, Phase 1 marked complete |
+| `.claude/progress.md` | Current state and priorities updated |
+| `app/_components/CookieConsent.tsx` | New — GDPR banner + preferences panel |
+| `app/_components/CookieSettingsLink.tsx` | New — footer cookie settings trigger |
+| `app/layout.tsx` | Added `<CookieConsent />` |
+| `app/_components/Footer.tsx` | Added Cookie Settings link |
+
+**GDPR compliance notes:**
+- Equal-weight buttons (ICO dark-pattern guidance met)
+- Cookie Settings in footer satisfies ICO "withdraw as easily as give" requirement
+- Version field in consent object — bump `CONSENT_VERSION` in `CookieConsent.tsx` to force re-consent when categories change
+- Analytics off by default (opt-in, not opt-out)
+
+**Decisions Made:**
+| Decision | Reasoning |
+|---|---|
+| localStorage over cookie for consent | Client-side only for now — switch to cookie if server-side conditional loading is ever needed |
+| Custom event (`rg:open-cookie-prefs`) | Keeps Footer as server component, avoids context/prop drilling |
+| Two categories only (Essential + Analytics) | Right-sized for a marketing site — Marketing can be added later by bumping CONSENT_VERSION |
+
+**Left Incomplete:**
+- Nothing — Phase 1 fully complete, cookie consent live
+
+**Next Session Priority:**
+Begin Phase 2 — AI-Automated Risk Management planning and implementation.
+
+---
+
 ### Session — 2026-05-10
 
 **Summary:**
