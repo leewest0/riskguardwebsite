@@ -1,1 +1,1 @@
-export const CALENDLY_URL = "https://calendly.com/your-link-here";
+export const CALENDLY_URL = "https://calendly.com/leebotchway0/riskguard-demo";
