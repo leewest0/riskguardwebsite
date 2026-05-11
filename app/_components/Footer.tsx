@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LogoMark } from "./Logo";
+import { CookieSettingsLink } from "./CookieSettingsLink";
 
 const FOOTER_LINKS = [
   { href: "/privacy", label: "Privacy" },
@@ -15,7 +16,7 @@ export function Footer() {
         <LogoMark size={24} />
         <span>© 2026 TrusTrak Solutions Ltd. London, UK.</span>
       </div>
-      <div className="flex gap-6">
+      <div className="flex flex-wrap gap-6">
         {FOOTER_LINKS.map((link) => (
           <Link
             key={link.label}
@@ -25,6 +26,7 @@ export function Footer() {
             {link.label}
           </Link>
         ))}
+        <CookieSettingsLink />
       </div>
     </footer>
   );
