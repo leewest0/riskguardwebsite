@@ -84,6 +84,7 @@ export function Hero() {
           Book a Free Demo
           <span aria-hidden>→</span>
         </a>
+        {/* Walkthrough button — commented out until dashboard video is ready
         <a
           href="#"
           className="text-[15px] font-normal text-gray-300 hover:text-white bg-transparent border border-white/8 hover:border-white/20 hover:bg-white/4 rounded-[10px] px-7 py-3.5 transition-all inline-flex items-center gap-2"
@@ -91,6 +92,7 @@ export function Hero() {
           <span aria-hidden>▶</span>
           Watch 2-min walkthrough
         </a>
+        */}
       </div>
 
       <div
