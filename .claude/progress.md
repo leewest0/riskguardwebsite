@@ -23,6 +23,31 @@ Phase 1 (marketing website) is **complete**. All pages built, Calendly URL live,
 
 ## 📋 Session Log
 
+### Session — 2026-05-12
+
+**Summary:**
+Compliance audit of the cookie consent implementation revealed one real gap — no consent expiry. Patched `readConsent()` to invalidate consent older than 12 months, satisfying ICO guidance on periodic refresh.
+
+**Completed:**
+- Added `CONSENT_MAX_AGE_MS` constant (365 days) to `CookieConsent.tsx`
+- `readConsent()` now checks age of stored consent — expired consent re-shows the banner
+- Committed `b62f598`, pushed, Notion updated
+
+**Files Modified:**
+| File | Change |
+|---|---|
+| `app/_components/CookieConsent.tsx` | Added 12-month expiry check to `readConsent()` |
+
+**Known remaining items (deferred):**
+- "Accept All" slightly more visually prominent than "Essential Only" — grey area, not urgent
+- localStorage won't share across subdomains — switch to cookie before Phase 2 app launch
+- No server-side consent enforcement — handle when analytics scripts are added
+
+**Next Session Priority:**
+Begin Phase 2 — AI-Automated Risk Management implementation.
+
+---
+
 ### Session — 2026-05-11
 
 **Summary:**
