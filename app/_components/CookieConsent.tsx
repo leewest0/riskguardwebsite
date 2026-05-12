@@ -7,6 +7,8 @@ import { X } from "lucide-react";
 const CONSENT_KEY = "rg-cookie-consent";
 // Bump this string whenever new cookie categories are added — forces re-consent
 const CONSENT_VERSION = "1.0";
+// UK GDPR — ICO recommends refreshing consent at 12 months maximum
+const CONSENT_MAX_AGE_MS = 365 * 24 * 60 * 60 * 1000;
 
 interface ConsentData {
   essential: true;
@@ -22,6 +24,8 @@ function readConsent(): ConsentData | null {
     const parsed = JSON.parse(raw) as ConsentData;
     // Stale consent — new categories have been added since last visit
     if (parsed.version !== CONSENT_VERSION) return null;
+    // Expired consent — ICO recommends re-consent after 12 months
+    if (Date.now() - new Date(parsed.savedAt).getTime() > CONSENT_MAX_AGE_MS) return null;
     return parsed;
   } catch {
     return null;
