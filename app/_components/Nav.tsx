@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { href: "/features", label: "Features" },
   { href: "/frameworks", label: "Frameworks" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Nav() {
