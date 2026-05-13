@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { LogoMark } from "./Logo";
-import { CALENDLY_URL } from "./config";
+import { CALENDLY_URL, APP_URL } from "./config";
 
 const NAV_LINKS = [
   { href: "/features", label: "Features" },
@@ -47,7 +47,7 @@ export function Nav() {
 
         <div className="flex items-center gap-3">
           <a
-            href="#"
+            href={APP_URL}
             className="hidden sm:inline-block text-sm text-gray-300 hover:text-white transition-colors"
           >
             Sign in
@@ -109,7 +109,7 @@ export function Nav() {
 
           <div className="flex flex-col gap-3 pt-5">
             <a
-              href="#"
+              href={APP_URL}
               className="text-sm text-gray-300 hover:text-white transition-colors py-2 text-center"
             >
               Sign in
