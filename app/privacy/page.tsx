@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Nav } from "@/app/_components/Nav";
 import { Footer } from "@/app/_components/Footer";
+import { ObfuscatedEmail } from "@/app/_components/ObfuscatedEmail";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — RiskGuard",
@@ -136,9 +137,11 @@ export default function PrivacyPage() {
 
             <div className="border-t border-white/8 pt-10 text-sm text-gray-500">
               Questions? Email us at{" "}
-              <a href="mailto:privacy@riskguardhq.com" className="text-accent-bright hover:text-white transition-colors">
-                privacy@riskguardhq.com
-              </a>
+              <ObfuscatedEmail
+                user="privacy"
+                domain="riskguardhq.com"
+                className="text-accent-bright hover:text-white transition-colors"
+              />
               . This policy is governed by the laws of England and Wales.{" "}
               <Link href="/terms" className="text-accent-bright hover:text-white transition-colors">
                 View our Terms of Service →

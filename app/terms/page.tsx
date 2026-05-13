@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Nav } from "@/app/_components/Nav";
 import { Footer } from "@/app/_components/Footer";
+import { ObfuscatedEmail } from "@/app/_components/ObfuscatedEmail";
 
 export const metadata: Metadata = {
   title: "Terms of Service — RiskGuard",
@@ -143,9 +144,11 @@ export default function TermsPage() {
 
             <div className="border-t border-white/8 pt-10 text-sm text-gray-500">
               Questions? Email us at{" "}
-              <a href="mailto:support@riskguardhq.com" className="text-accent-bright hover:text-white transition-colors">
-                support@riskguardhq.com
-              </a>
+              <ObfuscatedEmail
+                user="support"
+                domain="riskguardhq.com"
+                className="text-accent-bright hover:text-white transition-colors"
+              />
               .{" "}
               <Link href="/privacy" className="text-accent-bright hover:text-white transition-colors">
                 View our Privacy Policy →

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Nav } from "@/app/_components/Nav";
 import { Footer } from "@/app/_components/Footer";
+import { ObfuscatedEmail } from "@/app/_components/ObfuscatedEmail";
 import { CALENDLY_URL } from "@/app/_components/config";
 
 export const metadata: Metadata = {
@@ -12,17 +13,20 @@ export const metadata: Metadata = {
 const CONTACTS = [
   {
     label: "General enquiries",
-    email: "support@riskguardhq.com",
+    user: "support",
+    domain: "riskguardhq.com",
     desc: "Questions about the platform, partnerships, or anything else.",
   },
   {
     label: "Security disclosures",
-    email: "security@riskguardhq.com",
+    user: "security",
+    domain: "riskguardhq.com",
     desc: "Report a vulnerability or security concern privately.",
   },
   {
     label: "Privacy & data requests",
-    email: "privacy@riskguardhq.com",
+    user: "privacy",
+    domain: "riskguardhq.com",
     desc: "Exercise your data rights or ask about our privacy practices.",
   },
 ];
@@ -63,19 +67,20 @@ export default function ContactPage() {
         <section className="px-6 py-24 border-t border-white/8">
           <div className="max-w-220 mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
             {CONTACTS.map((c) => (
-              <a
-                key={c.email}
-                href={`mailto:${c.email}`}
+              <div
+                key={c.user}
                 className="group bg-navy-light border border-white/8 hover:border-accent/30 rounded-2xl p-8 transition-colors"
               >
                 <p className="text-xs font-medium text-gray-500 uppercase tracking-widest mb-3">
                   {c.label}
                 </p>
-                <p className="text-base font-medium text-accent-bright group-hover:text-white transition-colors mb-2 break-all">
-                  {c.email}
-                </p>
+                <ObfuscatedEmail
+                  user={c.user}
+                  domain={c.domain}
+                  className="block text-base font-medium text-accent-bright hover:text-white transition-colors mb-2 break-all"
+                />
                 <p className="text-sm text-gray-500 font-light leading-relaxed">{c.desc}</p>
-              </a>
+              </div>
             ))}
           </div>
 

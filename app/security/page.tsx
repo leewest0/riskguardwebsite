@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Nav } from "@/app/_components/Nav";
 import { Footer } from "@/app/_components/Footer";
 import { FinalCTA } from "@/app/_components/FinalCTA";
+import { ObfuscatedEmail } from "@/app/_components/ObfuscatedEmail";
 
 export const metadata: Metadata = {
   title: "Security — RiskGuard",
@@ -178,13 +179,12 @@ export default function SecurityPage() {
                 Found a vulnerability? Please report it privately before disclosure. We commit to
                 acknowledging all reports within 48 hours and resolving confirmed issues promptly.
               </p>
-              <a
-                href="mailto:security@riskguardhq.com"
+              <ObfuscatedEmail
+                user="security"
+                domain="riskguardhq.com"
                 className="inline-block text-sm font-medium text-white bg-accent hover:bg-accent-bright rounded-lg px-5 py-2.5 transition-all hover:-translate-y-px"
                 style={{ boxShadow: "0 0 20px rgba(31,77,196,0.3)" }}
-              >
-                security@riskguardhq.com
-              </a>
+              />
             </div>
           </div>
         </section>
