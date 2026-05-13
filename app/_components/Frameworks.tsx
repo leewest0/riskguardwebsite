@@ -1,3 +1,4 @@
+import { ShieldCheck } from "lucide-react";
 import { FadeUp } from "./FadeUp";
 
 const FRAMEWORKS = [
@@ -83,8 +84,8 @@ export function Frameworks() {
         </div>
 
         <div className="bg-navy border border-white/8 rounded-2xl p-8 text-center">
-          <div className="text-5xl mb-4" aria-hidden>
-            🛡️
+          <div className="flex justify-center mb-4" aria-hidden>
+            <ShieldCheck className="w-12 h-12 text-accent" strokeWidth={1.5} />
           </div>
           <div className="font-serif text-white text-[28px] mb-2 leading-tight">
             Audit-ready

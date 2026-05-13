@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const CONTACTS = [
   {
     label: "General enquiries",
-    email: "hello@riskguardhq.com",
+    email: "support@riskguardhq.com",
     desc: "Questions about the platform, partnerships, or anything else.",
   },
   {

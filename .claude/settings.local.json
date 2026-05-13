@@ -9,7 +9,17 @@
       "Bash(npm ls *)",
       "Bash(npx tsc *)",
       "Bash(git add *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "mcp__claude_ai_Notion__notion-search",
+      "mcp__claude_ai_Notion__notion-fetch",
+      "mcp__claude_ai_Notion__notion-update-page",
+      "WebSearch",
+      "WebFetch(domain:slack.com)",
+      "WebFetch(domain:docs.slack.dev)",
+      "mcp__claude_ai_Slack__slack_search_channels",
+      "mcp__claude_ai_Notion__notion-create-pages",
+      "mcp__claude_ai_Slack__slack_send_message"
     ]
   }
 }

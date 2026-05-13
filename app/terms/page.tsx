@@ -22,7 +22,7 @@ const SECTIONS = [
   },
   {
     title: "3. Account registration",
-    body: `You must provide accurate and complete information when registering. You are responsible for maintaining the confidentiality of your account credentials and for all activity that occurs under your account.\n\nYou must notify us immediately at hello@riskguardhq.com if you become aware of any unauthorised use of your account.\n\nYou must be at least 18 years old and have the legal capacity to enter into contracts to use this service.`,
+    body: `You must provide accurate and complete information when registering. You are responsible for maintaining the confidentiality of your account credentials and for all activity that occurs under your account.\n\nYou must notify us immediately at support@riskguardhq.com if you become aware of any unauthorised use of your account.\n\nYou must be at least 18 years old and have the legal capacity to enter into contracts to use this service.`,
   },
   {
     title: "4. Acceptable use",
@@ -61,6 +61,38 @@ const SECTIONS = [
     body: `We may update these terms from time to time. We will notify you of material changes by email at least 14 days before they take effect. If you do not agree to the revised terms, you may cancel your account before the effective date.\n\nContinued use of the platform after the effective date constitutes acceptance of the revised terms.`,
   },
 ];
+
+// Safely renders **bold** markers and - bullet lists as React elements — no HTML injection
+function renderInline(text: string): React.ReactNode[] {
+  const parts = text.split(/\*\*(.+?)\*\*/g);
+  return parts.map((part, i) =>
+    i % 2 === 0 ? part : <strong key={i} className="text-white font-medium">{part}</strong>
+  );
+}
+
+function renderParagraph(para: string, index: number): React.ReactNode {
+  const lines = para.split("\n").filter((l) => l.length > 0);
+  const isList = lines.length > 0 && lines.every((l) => l.startsWith("- "));
+
+  if (isList) {
+    return (
+      <ul key={index} className="flex flex-col gap-1.5 list-none">
+        {lines.map((line, i) => (
+          <li key={i} className="flex items-start gap-2.5 text-[16px] text-gray-300 font-light leading-relaxed">
+            <span className="mt-2.5 w-1 h-1 rounded-full shrink-0" style={{ background: "var(--color-accent)" }} aria-hidden />
+            {renderInline(line.slice(2))}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  return (
+    <p key={index} className="text-[16px] text-gray-300 font-light leading-relaxed">
+      {renderInline(para)}
+    </p>
+  );
+}
 
 export default function TermsPage() {
   return (
@@ -104,23 +136,15 @@ export default function TermsPage() {
                   {s.title}
                 </h2>
                 <div className="flex flex-col gap-3">
-                  {s.body.split("\n\n").map((para, i) => (
-                    <p
-                      key={i}
-                      className="text-[16px] text-gray-300 font-light leading-relaxed"
-                      dangerouslySetInnerHTML={{
-                        __html: para.replace(/\*\*(.+?)\*\*/g, "<strong class=\"text-white font-medium\">$1</strong>"),
-                      }}
-                    />
-                  ))}
+                  {s.body.split("\n\n").map((para, i) => renderParagraph(para, i))}
                 </div>
               </div>
             ))}
 
             <div className="border-t border-white/8 pt-10 text-sm text-gray-500">
               Questions? Email us at{" "}
-              <a href="mailto:hello@riskguardhq.com" className="text-accent-bright hover:text-white transition-colors">
-                hello@riskguardhq.com
+              <a href="mailto:support@riskguardhq.com" className="text-accent-bright hover:text-white transition-colors">
+                support@riskguardhq.com
               </a>
               .{" "}
               <Link href="/privacy" className="text-accent-bright hover:text-white transition-colors">

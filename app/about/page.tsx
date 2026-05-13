@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 function AboutHero() {
   return (
     <section className="relative flex flex-col items-center justify-center text-center min-h-[80vh] pt-32 pb-20 px-6 overflow-hidden">
-      {/* Globe — sits behind everything */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+      {/* Globe — hidden on mobile, shown from md breakpoint up */}
+      <div className="absolute inset-0 hidden md:flex items-center justify-center pointer-events-none">
         <div
           className="w-140 h-140 md:w-190 md:h-190 pointer-events-auto"
           style={{
@@ -74,7 +74,7 @@ function AboutHero() {
             animationDelay: "0.2s",
           }}
         >
-          We&apos;re building the GRC platform we wish existed when we were
+          We built the GRC platform we wish existed when we were
           running compliance ourselves — one that gets growing teams audit-ready
           in weeks, not quarters.
         </p>

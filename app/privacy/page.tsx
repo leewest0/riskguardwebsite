@@ -54,6 +54,38 @@ const SECTIONS = [
   },
 ];
 
+// Safely renders **bold** markers and - bullet lists as React elements — no HTML injection
+function renderInline(text: string): React.ReactNode[] {
+  const parts = text.split(/\*\*(.+?)\*\*/g);
+  return parts.map((part, i) =>
+    i % 2 === 0 ? part : <strong key={i} className="text-white font-medium">{part}</strong>
+  );
+}
+
+function renderParagraph(para: string, index: number): React.ReactNode {
+  const lines = para.split("\n").filter((l) => l.length > 0);
+  const isList = lines.length > 0 && lines.every((l) => l.startsWith("- "));
+
+  if (isList) {
+    return (
+      <ul key={index} className="flex flex-col gap-1.5 list-none">
+        {lines.map((line, i) => (
+          <li key={i} className="flex items-start gap-2.5 text-[16px] text-gray-300 font-light leading-relaxed">
+            <span className="mt-2.5 w-1 h-1 rounded-full shrink-0" style={{ background: "var(--color-accent)" }} aria-hidden />
+            {renderInline(line.slice(2))}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  return (
+    <p key={index} className="text-[16px] text-gray-300 font-light leading-relaxed">
+      {renderInline(para)}
+    </p>
+  );
+}
+
 export default function PrivacyPage() {
   return (
     <>
@@ -97,15 +129,7 @@ export default function PrivacyPage() {
                   {s.title}
                 </h2>
                 <div className="flex flex-col gap-3">
-                  {s.body.split("\n\n").map((para, i) => (
-                    <p
-                      key={i}
-                      className="text-[16px] text-gray-300 font-light leading-relaxed"
-                      dangerouslySetInnerHTML={{
-                        __html: para.replace(/\*\*(.+?)\*\*/g, "<strong class=\"text-white font-medium\">$1</strong>"),
-                      }}
-                    />
-                  ))}
+                  {s.body.split("\n\n").map((para, i) => renderParagraph(para, i))}
                 </div>
               </div>
             ))}

@@ -28,7 +28,7 @@ const FEATURES: { icon: LucideIcon; title: string; desc: string }[] = [
   {
     icon: Bot,
     title: "AI Advisor",
-    desc: "Ask Claude anything about your compliance posture. Get risk guidance, control recommendations, and audit prep advice — in plain English.",
+    desc: "Ask AI anything about your compliance posture. Get risk guidance, control recommendations, and audit prep advice — in plain English.",
   },
   {
     icon: Users,
