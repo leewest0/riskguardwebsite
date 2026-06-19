@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { DM_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { CookieConsent } from "@/app/_components/CookieConsent";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const dmSans = DM_Sans({
   variable: "--font-sans",
@@ -37,6 +39,9 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-navy text-white font-sans">
         {children}
         <CookieConsent />
+        {/* Cookieless — no consent required. Active on all page views. */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
