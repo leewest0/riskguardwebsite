@@ -3,6 +3,7 @@ import {
   BookOpen,
   Bot,
   CheckSquare,
+  ClipboardCheck,
   ClipboardList,
   FileBarChart,
   FolderLock,
@@ -48,6 +49,19 @@ export const FEATURES: FeatureSummary[] = [
       "AI-powered likelihood × impact scoring with residual risk estimation",
       "Risk-to-controls mapping — link any controls directly to each risk",
       "Assign owners, set due dates, and track accountability end to end",
+    ],
+  },
+  {
+    slug: "audit-workflow",
+    icon: ClipboardCheck,
+    title: "Audit Workflow",
+    tagline: "From setup to sign-off. Every control, every finding.",
+    desc: "A structured 3-stage audit lifecycle — Setup, Conduct, Review — with per-control compliance scoring, findings documentation, remediation tasks, and internal and external comment threads.",
+    bullets: [
+      "3-stage lifecycle: Setup → Conduct Audit → Review",
+      "Per-control scoring: compliant, partially compliant, or non-compliant",
+      "Remediation tasks with assigned owner, due date, and status tracking",
+      "Internal team notes and external auditor comments in the same thread per control",
     ],
   },
   {
