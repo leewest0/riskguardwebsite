@@ -116,7 +116,7 @@ export function CookieConsent() {
               <p className="text-sm font-medium text-white mb-1">We use cookies</p>
               <p className="text-[13px] text-gray-400 leading-relaxed">
                 Essential cookies keep the site running. With your consent, we&apos;d also
-                like to use analytics cookies to understand how visitors use RiskGuard.{" "}
+                like to use analytics to understand how visitors use RiskGuard.{" "}
                 <Link href="/privacy" className="text-accent-bright hover:underline">
                   Privacy Policy
                 </Link>
@@ -206,6 +206,8 @@ export function CookieConsent() {
                 <span className="text-sm font-medium text-white block mb-1">Analytics</span>
                 <p className="text-[13px] text-gray-500 leading-relaxed">
                   Helps us understand how visitors use the site so we can improve it.
+                  Basic traffic analytics (Vercel) is cookieless and always active.
+                  This toggle covers any future cookie-based analytics tools we add.
                   No personal data is sold or shared with third parties.
                 </p>
               </div>

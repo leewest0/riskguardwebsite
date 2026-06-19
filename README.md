@@ -11,6 +11,8 @@ Built and operated by **TrusTrak Solutions Ltd**, London, UK.
 - TypeScript
 - Tailwind CSS v4 (CSS-based `@theme` config)
 - `next/font/google` — Instrument Serif (display) + DM Sans (body)
+- `@vercel/analytics` — cookieless page-view analytics
+- `@vercel/speed-insights` — Core Web Vitals monitoring
 
 ## Project layout
 
