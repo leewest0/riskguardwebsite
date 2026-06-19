@@ -1,46 +1,7 @@
-import {
-  Bot,
-  CheckSquare,
-  ClipboardList,
-  FileBarChart,
-  FolderLock,
-  Users,
-  type LucideIcon,
-} from "lucide-react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { FadeUp } from "./FadeUp";
-
-const FEATURES: { icon: LucideIcon; title: string; desc: string }[] = [
-  {
-    icon: ClipboardList,
-    title: "Risk Register",
-    desc: "Document, score, and track every risk with automated likelihood and impact scoring. Assign owners and monitor remediation progress in real time.",
-  },
-  {
-    icon: CheckSquare,
-    title: "Controls Library",
-    desc: "Pre-built controls mapped to ISO 27001, SOC 2, NIST, PCI DSS, and GDPR. Import via CSV or build your own — then track testing across audits.",
-  },
-  {
-    icon: FolderLock,
-    title: "Evidence Locker",
-    desc: "Secure file storage with SHA-256 integrity verification. Every piece of audit evidence is tamper-evident and ready for external auditors.",
-  },
-  {
-    icon: Bot,
-    title: "AI Advisor",
-    desc: "Ask AI anything about your compliance posture. Get risk guidance, control recommendations, and audit prep advice — in plain English.",
-  },
-  {
-    icon: Users,
-    title: "External Auditor Portal",
-    desc: "Generate secure, time-limited access tokens for external auditors. They get scoped access to evidence — nothing more, nothing less.",
-  },
-  {
-    icon: FileBarChart,
-    title: "PDF Audit Reports",
-    desc: "One-click executive reports with compliance scores, control status, and findings. Board-ready, auditor-approved, automatically generated.",
-  },
-];
+import { FEATURES } from "./featureData";
 
 export function Features() {
   return (
@@ -64,40 +25,51 @@ export function Features() {
       </p>
 
       <FadeUp>
-      <div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px rounded-2xl overflow-hidden border border-white/8"
-        style={{ background: "rgba(255,255,255,0.08)" }}
-      >
-        {FEATURES.map((f) => (
-          <div
-            key={f.title}
-            className="group relative bg-navy hover:bg-navy-light p-9 transition-colors overflow-hidden"
-          >
-            <div
-              className="absolute top-0 inset-x-0 h-px opacity-0 group-hover:opacity-100 transition-opacity"
-              style={{
-                background:
-                  "linear-gradient(90deg, transparent, var(--color-accent), transparent)",
-              }}
-            />
-            <div
-              className="w-11 h-11 rounded-[10px] flex items-center justify-center mb-5"
-              style={{
-                background: "rgba(79,110,247,0.15)",
-                border: "1px solid rgba(79,110,247,0.2)",
-              }}
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px rounded-2xl overflow-hidden border border-white/8"
+          style={{ background: "rgba(255,255,255,0.08)" }}
+        >
+          {FEATURES.map((f) => (
+            <Link
+              key={f.slug}
+              href={`/features/${f.slug}`}
+              className="group relative bg-navy hover:bg-navy-light p-9 transition-colors overflow-hidden flex flex-col"
             >
-              <f.icon size={20} className="text-accent-bright" aria-hidden="true" />
-            </div>
-            <h3 className="text-base font-semibold text-white mb-2.5 tracking-tight">
-              {f.title}
-            </h3>
-            <p className="text-sm text-gray-500 leading-relaxed font-light">
-              {f.desc}
-            </p>
-          </div>
-        ))}
-      </div>
+              {/* Accent gradient line that appears on hover */}
+              <div
+                className="absolute top-0 inset-x-0 h-px opacity-0 group-hover:opacity-100 transition-opacity"
+                style={{
+                  background:
+                    "linear-gradient(90deg, transparent, var(--color-accent), transparent)",
+                }}
+              />
+
+              {/* Icon */}
+              <div
+                className="w-11 h-11 rounded-[10px] flex items-center justify-center mb-5 shrink-0"
+                style={{
+                  background: "rgba(79,110,247,0.15)",
+                  border: "1px solid rgba(79,110,247,0.2)",
+                }}
+              >
+                <f.icon size={20} className="text-accent-bright" aria-hidden="true" />
+              </div>
+
+              <h3 className="text-base font-semibold text-white mb-2.5 tracking-tight">
+                {f.title}
+              </h3>
+              <p className="text-sm text-gray-500 leading-relaxed font-light flex-1">
+                {f.desc}
+              </p>
+
+              {/* Learn more indicator */}
+              <span className="mt-5 inline-flex items-center gap-1.5 text-[13px] font-medium text-accent-bright opacity-0 group-hover:opacity-100 transition-opacity">
+                Learn more
+                <ArrowRight size={13} aria-hidden="true" />
+              </span>
+            </Link>
+          ))}
+        </div>
       </FadeUp>
     </section>
   );
