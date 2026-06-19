@@ -95,10 +95,10 @@ const RELATED = [
     desc: "Evidence counts and SHA-256 integrity status per control appear in the report. Auditors can verify every claim traces back to a tamper-evident file.",
   },
   {
-    slug: "auditor-portal",
-    icon: Users,
-    title: "External Auditor Portal",
-    desc: "Share the PDF report alongside a time-limited portal link — auditors get the summary narrative and the ability to drill into the underlying evidence themselves.",
+    slug: "audit-workflow",
+    icon: ClipboardCheck,
+    title: "Audit Workflow",
+    desc: "The report is generated at the end of a completed audit — all control scores, findings, and remediation tasks flow in automatically. No copy-pasting from a spreadsheet.",
   },
 ];
 
