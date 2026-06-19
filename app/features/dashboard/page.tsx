@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  Bot,
+  LayoutDashboard,
   ArrowLeft,
   ArrowRight,
-  Wand2,
-  Brain,
-  SearchCheck,
-  FileQuestion,
-  MessageSquare,
-  FileText,
+  BarChart3,
+  Activity,
+  AlertTriangle,
+  TrendingUp,
+  Clock,
+  Filter,
   ClipboardList,
-  CheckSquare,
+  Bot,
   FileBarChart,
-  Zap,
   ShieldCheck,
-  Lock,
+  Zap,
+  RefreshCw,
 } from "lucide-react";
 import { Nav } from "@/app/_components/Nav";
 import { Footer } from "@/app/_components/Footer";
@@ -24,65 +24,59 @@ import { FadeUp } from "@/app/_components/FadeUp";
 import { CALENDLY_URL } from "@/app/_components/config";
 
 export const metadata: Metadata = {
-  title: "AI Advisor — RiskGuard",
+  title: "Dashboard — RiskGuard",
   description:
-    "Claude-powered AI that reads your risks, controls, and evidence to give you real, contextual compliance guidance — from one-click risk creation to bulk questionnaire automation.",
+    "Your entire compliance posture at a glance. Real-time risk counts, compliance scores, audit progress, and interactive charts — updated the moment anything changes.",
 };
 
 const CAPABILITIES = [
   {
-    icon: Wand2,
-    title: "AI Risk Creation",
-    desc: "Describe a risk in plain English. Claude pre-populates the title, category, likelihood score, impact score, and a full mitigation plan. AI-suggested controls appear as toggleable pills — select and save in one click.",
-    model: "Claude Haiku",
+    icon: BarChart3,
+    title: "Live compliance score",
+    desc: "A single percentage score that reflects your organisation's current compliance posture across all active frameworks. It updates automatically as you close findings, add evidence, and complete controls.",
   },
   {
-    icon: Brain,
-    title: "AI Risk Insights Panel",
-    desc: "One click opens a per-risk analysis: inherent risk score before mitigations, estimated residual score after your mitigation plan, key vulnerabilities, and the next recommended actions. Collapsible and always available.",
-    model: "Claude Sonnet",
+    icon: AlertTriangle,
+    title: "Risk summary panel",
+    desc: "Total risks, high-severity risks, open risks, and overdue items — surfaced the moment you log in. No filtering, no digging. The numbers that matter, front and centre.",
   },
   {
-    icon: SearchCheck,
-    title: "AI Evidence Gap Detection",
-    desc: "Per-control AI review: compliance result (compliant / partially compliant / non-compliant), a list of missing evidence, and recommended remediation steps. Results are cached by evidence count — no redundant API calls.",
-    model: "Claude Sonnet",
+    icon: Activity,
+    title: "Interactive charts",
+    desc: "Recharts-based visualisations for risk distribution by severity, compliance status breakdown by framework, and remediation progress over time. Hover for details. Click to drill in.",
   },
   {
-    icon: FileQuestion,
-    title: "Questionnaire Automation",
-    desc: "Upload a security questionnaire (CSV or PDF). Claude answers each question using your organisation's own policies, procedures, and evidence — extracted and indexed at upload time. Human review workflow built in.",
-    model: "Claude Haiku",
+    icon: Clock,
+    title: "Recent activity feed",
+    desc: "A live log of everything that changed — risk created, control updated, evidence uploaded, audit finding added. Know exactly who did what and when, without leaving the dashboard.",
   },
   {
-    icon: MessageSquare,
-    title: "Compliance Chat",
-    desc: "A streaming chat interface grounded in your own organisational data. Ask about your compliance posture, get control recommendations, or rehearse the questions your next ISO 27001 auditor is going to ask.",
-    model: "Claude Sonnet",
+    icon: TrendingUp,
+    title: "Audit progress indicators",
+    desc: "Progress bars per active audit showing controls assessed vs outstanding. See at a glance which audits are on track and which need attention before the review deadline.",
   },
   {
-    icon: FileText,
-    title: "AI Executive Summary",
-    desc: "Generates a board-ready executive summary from your live audit data. Written in plain English, not legalese — regenerate on demand as your compliance posture improves.",
-    model: "Claude Haiku",
+    icon: Filter,
+    title: "Framework-level breakdown",
+    desc: "Compliance scores broken down by framework — ISO 27001, SOC 2, NIST, PCI DSS, GDPR, HIPAA. Instantly see which framework you're closest to passing and where the biggest gaps remain.",
   },
 ];
 
 const STEPS = [
   {
     number: "01",
-    title: "Describe",
-    desc: "Type a risk in plain English: \"We store customer PII in a cloud database with no encryption at rest.\" Claude returns a fully structured risk entry: title, category, likelihood, impact, mitigation plan, and suggested controls — in under three seconds.",
+    title: "Log in and see everything",
+    desc: "The dashboard is your first screen every time. Total risks, compliance score, open findings, and audit progress — all updated in real time. No configuration needed. It reads from your live data the moment the page loads.",
   },
   {
     number: "02",
-    title: "Analyse",
-    desc: "Open the AI Insights Panel on any risk or the Evidence Gap panel on any control. Claude reads your current mitigation steps, linked controls, and uploaded evidence — then tells you exactly what's missing and what to do next.",
+    title: "Spot what needs attention",
+    desc: "High-severity risks and overdue remediation tasks are highlighted immediately. The activity feed shows the latest changes from your team. You know what's moved and what's stalled before you open a single detail view.",
   },
   {
     number: "03",
-    title: "Automate",
-    desc: "Upload a vendor security questionnaire or customer due diligence form. Claude answers each question by searching your organisation's own document knowledge base — policies, procedures, and evidence extracted at upload. Review, edit, and export as CSV.",
+    title: "Navigate directly from the data",
+    desc: "Charts and summary panels are clickable. Click a risk count to jump to the risk register filtered by severity. Click an audit to open the audit workflow. The dashboard is a launchpad, not a report.",
   },
 ];
 
@@ -91,23 +85,23 @@ const RELATED = [
     slug: "risk-register",
     icon: ClipboardList,
     title: "Risk Register",
-    desc: "AI Risk Creation feeds directly into the risk register. One plain English sentence becomes a fully scored, owner-assigned, control-mapped risk entry.",
+    desc: "The dashboard's risk summary panel pulls directly from the register. Click any risk count on the dashboard to open the register pre-filtered to that severity level.",
   },
   {
-    slug: "controls-library",
-    icon: CheckSquare,
-    title: "Controls Library",
-    desc: "AI Evidence Gap Detection reads your control library and tells you exactly which evidence is missing per control — before your auditors find the gaps themselves.",
+    slug: "ai-advisor",
+    icon: Bot,
+    title: "AI Advisor",
+    desc: "The AI reads your full compliance posture — the same data that powers the dashboard — to give you contextual guidance on what to fix first.",
   },
   {
     slug: "audit-reports",
     icon: FileBarChart,
     title: "PDF Audit Reports",
-    desc: "The AI Executive Summary turns your live audit data into a board-ready narrative. Click generate. Review. Download.",
+    desc: "When the dashboard shows you're ready, generate a board-level PDF report from the same live data in one click.",
   },
 ];
 
-export default function AIAdvisorPage() {
+export default function DashboardPage() {
   return (
     <>
       <Nav />
@@ -132,10 +126,10 @@ export default function AIAdvisorPage() {
                   border: "1px solid rgba(79,110,247,0.2)",
                 }}
               >
-                <Bot size={22} className="text-accent-bright" aria-hidden="true" />
+                <LayoutDashboard size={22} className="text-accent-bright" aria-hidden="true" />
               </div>
               <p className="text-xs font-medium text-accent-bright uppercase tracking-widest">
-                AI-Powered Compliance
+                Command Centre
               </p>
             </div>
 
@@ -147,17 +141,16 @@ export default function AIAdvisorPage() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Your compliance team
+              Your entire compliance
               <br />
-              <em className="italic">powered by AI.</em>
+              <em className="italic">posture. At a glance.</em>
             </h1>
 
             <p className="text-[19px] text-gray-300 font-light leading-relaxed max-w-150 mb-10">
-              Claude reads your own risks, controls, and evidence to give you
-              real, contextual compliance guidance — not generic advice. From
-              one-click risk creation to bulk questionnaire automation, the AI
-              Advisor handles the tedious parts so your team can focus on fixing
-              the actual gaps.
+              A real-time command centre for your GRC programme. Total risks,
+              compliance scores, audit progress, and recent activity — updated
+              the moment anything changes in your platform. No manual refresh.
+              No spreadsheet-pulling. Just the truth, live.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
@@ -185,7 +178,7 @@ export default function AIAdvisorPage() {
         <section className="py-20 px-6 max-w-300 mx-auto">
           <FadeUp>
             <p className="text-xs font-medium text-accent-bright uppercase tracking-widest mb-3">
-              What it does
+              What it shows
             </p>
             <h2
               className="font-serif text-white mb-14 max-w-150"
@@ -195,41 +188,28 @@ export default function AIAdvisorPage() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Six AI capabilities. One platform.
+              Everything that matters. Nothing that doesn&apos;t.
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {CAPABILITIES.map((c) => (
                 <div
                   key={c.title}
-                  className="bg-navy-light border border-white/8 rounded-2xl p-8 flex flex-col"
+                  className="bg-navy-light border border-white/8 rounded-2xl p-8"
                 >
-                  <div className="flex items-start justify-between gap-3 mb-4">
-                    <div
-                      className="w-10 h-10 rounded-[9px] flex items-center justify-center shrink-0"
-                      style={{
-                        background: "rgba(79,110,247,0.12)",
-                        border: "1px solid rgba(79,110,247,0.18)",
-                      }}
-                    >
-                      <c.icon size={18} className="text-accent-bright" aria-hidden="true" />
-                    </div>
-                    {/* Model badge */}
-                    <span
-                      className="text-[11px] font-medium shrink-0 border rounded-full px-2.5 py-1"
-                      style={{
-                        color: "rgba(79,110,247,0.9)",
-                        borderColor: "rgba(79,110,247,0.2)",
-                        background: "rgba(79,110,247,0.08)",
-                      }}
-                    >
-                      {c.model}
-                    </span>
+                  <div
+                    className="w-11 h-11 rounded-[10px] flex items-center justify-center mb-5"
+                    style={{
+                      background: "rgba(79,110,247,0.12)",
+                      border: "1px solid rgba(79,110,247,0.18)",
+                    }}
+                  >
+                    <c.icon size={20} className="text-accent-bright" aria-hidden="true" />
                   </div>
-                  <h3 className="text-[15px] font-semibold text-white mb-2 tracking-tight">
+                  <h3 className="text-[16px] font-semibold text-white mb-3 tracking-tight">
                     {c.title}
                   </h3>
-                  <p className="text-[15px] text-gray-400 leading-relaxed font-light flex-1">{c.desc}</p>
+                  <p className="text-[15px] text-gray-400 leading-relaxed font-light">{c.desc}</p>
                 </div>
               ))}
             </div>
@@ -251,7 +231,7 @@ export default function AIAdvisorPage() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Describe. Analyse. Automate.
+                Log in. See the truth. Act.
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -272,7 +252,7 @@ export default function AIAdvisorPage() {
           </div>
         </section>
 
-        {/* Cost-efficient model routing callout */}
+        {/* Callout */}
         <section className="py-20 px-6 max-w-300 mx-auto">
           <FadeUp>
             <div
@@ -283,7 +263,7 @@ export default function AIAdvisorPage() {
               }}
             >
               <p className="text-xs font-medium text-accent-bright uppercase tracking-widest mb-4">
-                Smart model routing
+                Built for the Monday morning check-in
               </p>
               <h2
                 className="font-serif text-white mb-4 max-w-150"
@@ -293,17 +273,17 @@ export default function AIAdvisorPage() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Fast when speed matters. Deep when it counts.
+                The dashboard your CTO actually opens.
               </h2>
               <p className="text-[17px] text-gray-300 font-light leading-relaxed max-w-150 mb-6">
-                RiskGuard routes each AI task to the right Claude model. Structured tasks
-                like risk creation and questionnaire answering use Claude Haiku — fast and
-                cost-efficient. Complex reasoning like evidence gap analysis and risk insights
-                uses Claude Sonnet — for answers you can actually act on.
+                Most GRC tools bury the signal under layers of filters, tabs, and exports. The
+                RiskGuard dashboard is designed for a CTO who has 90 seconds before standup —
+                compliance score, high-risk items, and what changed overnight, all visible without
+                a single click.
               </p>
-              <p className="text-[15px] text-gray-400 font-light">
-                Evidence review results are cached by evidence count — so you're never charged
-                twice for the same analysis.
+              <p className="text-[17px] text-gray-300 font-light leading-relaxed max-w-150">
+                When an enterprise customer asks &ldquo;what&rsquo;s your current ISO 27001 posture?&rdquo; — you
+                pull up the dashboard, not a spreadsheet.
               </p>
             </div>
           </FadeUp>
@@ -314,9 +294,9 @@ export default function AIAdvisorPage() {
           <FadeUp>
             <div className="flex flex-wrap gap-4">
               {[
-                { icon: Zap, label: "Claude Haiku for speed · Claude Sonnet for depth — cost-optimised routing" },
-                { icon: ShieldCheck, label: "Evidence review results cached — no redundant API calls" },
-                { icon: Lock, label: "Your evidence is never used to train external AI models" },
+                { icon: RefreshCw, label: "Real-time updates — every change reflected immediately, no manual refresh" },
+                { icon: Zap, label: "Recharts-based interactive charts — hover, click, and drill in" },
+                { icon: ShieldCheck, label: "Data sourced directly from your live risks, controls, and audits" },
               ].map((t) => (
                 <div
                   key={t.label}

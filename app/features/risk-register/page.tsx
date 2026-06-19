@@ -187,25 +187,25 @@ export default function RiskRegisterPage() {
               Everything your risk lifecycle needs
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {CAPABILITIES.map((c) => (
                 <div
                   key={c.title}
-                  className="bg-navy-light border border-white/8 rounded-2xl p-7"
+                  className="bg-navy-light border border-white/8 rounded-2xl p-8"
                 >
                   <div
-                    className="w-10 h-10 rounded-[9px] flex items-center justify-center mb-4"
+                    className="w-11 h-11 rounded-[10px] flex items-center justify-center mb-5"
                     style={{
                       background: "rgba(79,110,247,0.12)",
                       border: "1px solid rgba(79,110,247,0.18)",
                     }}
                   >
-                    <c.icon size={18} className="text-accent-bright" aria-hidden="true" />
+                    <c.icon size={20} className="text-accent-bright" aria-hidden="true" />
                   </div>
-                  <h3 className="text-[15px] font-semibold text-white mb-2 tracking-tight">
+                  <h3 className="text-[16px] font-semibold text-white mb-3 tracking-tight">
                     {c.title}
                   </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed font-light">
+                  <p className="text-[15px] text-gray-400 leading-relaxed font-light">
                     {c.desc}
                   </p>
                 </div>
@@ -245,7 +245,7 @@ export default function RiskRegisterPage() {
                       {s.number}
                     </span>
                     <h3 className="text-lg font-semibold text-white mb-3">{s.title}</h3>
-                    <p className="text-sm text-gray-500 leading-relaxed font-light">{s.desc}</p>
+                    <p className="text-[15px] text-gray-400 leading-relaxed font-light">{s.desc}</p>
                   </div>
                 ))}
               </div>
@@ -297,7 +297,7 @@ export default function RiskRegisterPage() {
                 <Link
                   key={r.slug}
                   href={`/features/${r.slug}`}
-                  className="group bg-navy-light border border-white/8 hover:border-accent/30 rounded-2xl p-7 transition-colors flex flex-col gap-3"
+                  className="group bg-navy-light border border-white/8 hover:border-accent/30 rounded-2xl p-8 transition-colors flex flex-col gap-3"
                 >
                   <div
                     className="w-10 h-10 rounded-[9px] flex items-center justify-center shrink-0"
@@ -311,7 +311,7 @@ export default function RiskRegisterPage() {
                   <h3 className="text-[15px] font-semibold text-white tracking-tight">
                     {r.title}
                   </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed font-light flex-1">
+                  <p className="text-[15px] text-gray-400 leading-relaxed font-light flex-1">
                     {r.desc}
                   </p>
                   <span className="inline-flex items-center gap-1.5 text-[13px] font-medium text-accent-bright mt-1">

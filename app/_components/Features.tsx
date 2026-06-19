@@ -10,7 +10,7 @@ export function Features() {
         Everything you need
       </p>
       <h2
-        className="font-serif text-white max-w-150 mx-auto mb-4 text-center"
+        className="font-serif text-white max-w-150 mx-auto mb-5 text-center"
         style={{
           fontSize: "clamp(32px, 5vw, 52px)",
           lineHeight: 1.1,
@@ -35,7 +35,7 @@ export function Features() {
               href={`/features/${f.slug}`}
               className="group relative bg-navy hover:bg-navy-light p-9 transition-colors overflow-hidden flex flex-col"
             >
-              {/* Accent gradient line that appears on hover */}
+              {/* Accent gradient line on hover */}
               <div
                 className="absolute top-0 inset-x-0 h-px opacity-0 group-hover:opacity-100 transition-opacity"
                 style={{
@@ -55,15 +55,15 @@ export function Features() {
                 <f.icon size={20} className="text-accent-bright" aria-hidden="true" />
               </div>
 
-              <h3 className="text-base font-semibold text-white mb-2.5 tracking-tight">
+              <h3 className="text-[17px] font-semibold text-white mb-3 tracking-tight">
                 {f.title}
               </h3>
-              <p className="text-sm text-gray-500 leading-relaxed font-light flex-1">
+              <p className="text-[15px] text-gray-400 leading-relaxed font-light flex-1">
                 {f.desc}
               </p>
 
               {/* Learn more indicator */}
-              <span className="mt-5 inline-flex items-center gap-1.5 text-[13px] font-medium text-accent-bright opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="mt-6 inline-flex items-center gap-1.5 text-[13px] font-medium text-accent-bright opacity-0 group-hover:opacity-100 transition-opacity">
                 Learn more
                 <ArrowRight size={13} aria-hidden="true" />
               </span>
