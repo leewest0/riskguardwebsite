@@ -23,6 +23,43 @@ Phase 1 (marketing website) is **complete**. All pages built, Calendly URL live,
 
 ## 📋 Session Log
 
+### Session — 2026-06-19
+
+**Summary:**
+Added Vercel Analytics and Vercel Speed Insights to the marketing site. Both are cookieless, so they're mounted unconditionally in the root layout with no consent gate. Updated cookie consent copy to accurately describe what the Analytics toggle covers.
+
+**Completed:**
+- Installed `@vercel/analytics@2.0.1` and `@vercel/speed-insights@2.0.0`
+- Added `<Analytics />` and `<SpeedInsights />` to `app/layout.tsx` (unconditional — cookieless)
+- Updated banner copy: "analytics cookies" → "analytics" (more accurate for cookieless tool)
+- Updated panel description to clarify Vercel Analytics is always-on and cookieless, toggle reserved for future cookie-based tools
+- Updated `README.md` to list both new dependencies
+- TypeScript clean (`npx tsc --noEmit` passes)
+- Committed `7084afc`, pushed to `claude/vercel-analytics-setup-g04stx`
+
+**Files Modified:**
+| File | Change |
+|---|---|
+| `app/layout.tsx` | Added `<Analytics />` and `<SpeedInsights />` imports + mounts |
+| `app/_components/CookieConsent.tsx` | Updated analytics copy — removed "cookies", added cookieless clarification in panel |
+| `README.md` | Added `@vercel/analytics` and `@vercel/speed-insights` to Stack section |
+| `package.json` / `package-lock.json` | Added two new dependencies |
+
+**Decisions Made:**
+| Decision | Reasoning |
+|---|---|
+| Unconditional mount (no consent gate) | Vercel Analytics is cookieless — ICO-safe without consent. Gating it would add complexity with no legal benefit. |
+| Kept Analytics consent toggle | Reserved for future cookie-based tools (e.g. PostHog, GA) — user confirmed keep it |
+| Updated consent copy | "analytics cookies" was inaccurate for a cookieless tool — changed to "analytics" in banner, added explanatory sentence in panel |
+
+**Audit note:**
+6 npm vulnerabilities flagged — all pre-existing in `next@16.2.6` (postcss, babel, js-yaml). The `--force` fix would downgrade Next.js to 9.3.3, which is a breaking change and not acceptable. No new vulnerabilities introduced by this change.
+
+**Next Session Priority:**
+Begin Phase 2 — AI-Automated Risk Management implementation. Also: activate Vercel Analytics in the Vercel project dashboard (one-click toggle — no code change needed).
+
+---
+
 ### Session — 2026-05-12
 
 **Summary:**

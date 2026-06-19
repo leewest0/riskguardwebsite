@@ -23,6 +23,8 @@
 | cobe | 2.x | WebGL globe on About page hero |
 | next/font/google | — | Font loading: DM Sans + Instrument Serif |
 | next/og (ImageResponse) | — | Dynamic favicon + apple-icon generation at build time |
+| @vercel/analytics | 2.x | Cookieless page-view analytics — mounted unconditionally in root layout |
+| @vercel/speed-insights | 2.x | Core Web Vitals monitoring — mounted unconditionally in root layout |
 
 ---
 
