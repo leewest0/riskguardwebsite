@@ -6,22 +6,64 @@
 
 ## 🔖 Current State
 
-**As of:** 2026-05-11
+**As of:** 2026-06-19
 
-Phase 1 (marketing website) is **complete**. All pages built, Calendly URL live, Lucide icons, /features and /frameworks pages added. Now entering Phase 2 — AI-Automated Risk Management: inject Claude into the full risk entry flow so users type one plain-English description and Claude handles scoring, categorisation, mitigation, and control mapping.
+Phase 1 (marketing website) is **complete** and significantly expanded. All 6 feature detail pages are live on `feature/feature-detail-pages` (pushed, PR pending merge). Each feature card on the homepage and /features index is now a clickable link. Feature detail pages are rich, conversion-focused, with capabilities, how-it-works, callout sections, and related feature links. TypeScript passes clean. Next: create PR to merge `feature/feature-detail-pages` into `main`, then begin Phase 2 — AI-Automated Risk Management.
 
 ---
 
 ## ✅ Next Session Must Start With
 
-1. **Phase 2 — AI-Automated Risk Management.** Begin implementation planning.
-2. Single Claude API call triggered on risk description input → structured JSON response: `{ title, category, likelihood, likelihood_rationale, impact, impact_rationale, suggested_controls[], mitigation_steps[] }`
-3. Wire Claude output into existing risk modal fields — all fields remain fully editable (suggestion, not a lock)
-4. Roadmap after Phase 2: Multi-Tenant Setup (Phase 3) → Integrations: Slack, Jira, Teams (Phase 4) → Pricing & Payments/Stripe (Phase 5)
+1. **Create PR** — merge `feature/feature-detail-pages` into `main` so the feature detail pages go live on riskguardhq.com.
+2. **Phase 2 — AI-Automated Risk Management.** Begin implementation planning.
+3. Single Claude API call triggered on risk description input → structured JSON response: `{ title, category, likelihood, likelihood_rationale, impact, impact_rationale, suggested_controls[], mitigation_steps[] }`
+4. Wire Claude output into existing risk modal fields — all fields remain fully editable (suggestion, not a lock)
+5. Roadmap after Phase 2: Multi-Tenant Setup (Phase 3) → Integrations: Slack, Jira, Teams (Phase 4) → Pricing & Payments/Stripe (Phase 5)
 
 ---
 
 ## 📋 Session Log
+
+### Session — 2026-06-19 (continued — feature detail pages)
+
+**Summary:**
+Built all 6 feature detail pages, made homepage and /features cards clickable, created shared `featureData.ts` as single source of truth. TypeScript passes clean. Committed and pushed to `feature/feature-detail-pages`.
+
+**Completed:**
+- `app/_components/featureData.ts` — shared data for all 6 features (slug, icon, title, tagline, desc, bullets)
+- `app/_components/Features.tsx` — cards now wrapped in `next/link`, hover-reveal "Learn more" + `ArrowRight`
+- `app/features/page.tsx` — cards now wrapped in `next/link`, "Click any feature to go deeper" in subhead
+- `app/features/risk-register/page.tsx` — full detail page
+- `app/features/controls-library/page.tsx` — full detail page with framework strip
+- `app/features/evidence-locker/page.tsx` — full detail page with SHA-256 explainer
+- `app/features/ai-advisor/page.tsx` — full detail page with model badges on capability cards
+- `app/features/auditor-portal/page.tsx` — full detail page with SOC 2/GDPR alignment callout
+- `app/features/audit-reports/page.tsx` — full detail page with 10-section report strip and ISO 27001 C9.3 callout
+- TypeScript clean (`npx tsc --noEmit` passes)
+- Committed `6aebd18`, pushed to `feature/feature-detail-pages`
+
+**Files Modified:**
+| File | Change |
+|---|---|
+| `app/_components/featureData.ts` | New — shared feature data |
+| `app/_components/Features.tsx` | Cards clickable, imports featureData |
+| `app/features/page.tsx` | Cards clickable, imports featureData |
+| `app/features/risk-register/page.tsx` | New — full detail page |
+| `app/features/controls-library/page.tsx` | New — full detail page |
+| `app/features/evidence-locker/page.tsx` | New — full detail page |
+| `app/features/ai-advisor/page.tsx` | New — full detail page |
+| `app/features/auditor-portal/page.tsx` | New — full detail page |
+| `app/features/audit-reports/page.tsx` | New — full detail page |
+
+**Decisions Made:**
+| Decision | Reasoning |
+|---|---|
+| Shared `featureData.ts` | Avoids duplicating feature metadata across homepage, features index, and 6 detail pages |
+| Consistent 5-section pattern per page | Hero → Capabilities → How it works → Callout → Trust signals → Related. Keeps all pages scannable and on-brand |
+| Model badges on AI Advisor capability cards | Differentiator — showing Claude Haiku vs Sonnet routing is a real technical advantage worth surfacing |
+| Feature-specific callout per page | Each page's callout targets the specific "why should I care" angle (SHA-256 explainer, ISO clause reference, SOC 2 alignment, deal-closing angle for reports) |
+
+---
 
 ### Session — 2026-06-19
 
