@@ -8,21 +8,44 @@
 
 **As of:** 2026-06-19
 
-Phase 1 (marketing website) is **complete** and significantly expanded. All 6 feature detail pages are live on `feature/feature-detail-pages` (pushed, PR pending merge). Each feature card on the homepage and /features index is now a clickable link. Feature detail pages are rich, conversion-focused, with capabilities, how-it-works, callout sections, and related feature links. TypeScript passes clean. Next: create PR to merge `feature/feature-detail-pages` into `main`, then begin Phase 2 — AI-Automated Risk Management.
+Phase 1 (marketing website) is **complete** and fully expanded. The /features section now has 10 feature pages (up from 6), all with Vanta-style larger text and breathing room. All pages are merged to `main` (commit `23173ee`). Next: begin Phase 2 — AI-Automated Risk Management.
 
 ---
 
 ## ✅ Next Session Must Start With
 
-1. **Create PR** — merge `feature/feature-detail-pages` into `main` so the feature detail pages go live on riskguardhq.com.
-2. **Phase 2 — AI-Automated Risk Management.** Begin implementation planning.
-3. Single Claude API call triggered on risk description input → structured JSON response: `{ title, category, likelihood, likelihood_rationale, impact, impact_rationale, suggested_controls[], mitigation_steps[] }`
-4. Wire Claude output into existing risk modal fields — all fields remain fully editable (suggestion, not a lock)
-5. Roadmap after Phase 2: Multi-Tenant Setup (Phase 3) → Integrations: Slack, Jira, Teams (Phase 4) → Pricing & Payments/Stripe (Phase 5)
+1. **Phase 2 — AI-Automated Risk Management.** Begin implementation planning.
+2. Single Claude API call triggered on risk description input → structured JSON response: `{ title, category, likelihood, likelihood_rationale, impact, impact_rationale, suggested_controls[], mitigation_steps[] }`
+3. Wire Claude output into existing risk modal fields — all fields remain fully editable (suggestion, not a lock)
+4. Roadmap after Phase 2: Multi-Tenant Setup (Phase 3) → Integrations: Slack, Jira, Teams (Phase 4) → Pricing & Payments/Stripe (Phase 5)
 
 ---
 
 ## 📋 Session Log
+
+### Session — 2026-06-19 (continued — audit workflow page)
+
+**Summary:**
+Added `/features/audit-workflow` detail page — the 3-stage audit lifecycle (Setup → Conduct → Review). Positioned after Risk Register in `featureData.ts`. TypeScript clean. Pushed to `feature/vanta-redesign-new-features`.
+
+**Completed:**
+- `app/_components/featureData.ts` — added `audit-workflow` entry after `risk-register`, imported `ClipboardCheck` icon
+- `app/features/audit-workflow/page.tsx` — new full detail page: 6 capability cards, 3-step how-it-works, ISO 27001 Clause 10.1 callout, trust signals, related features
+
+**Files Modified:**
+| File | Change |
+|---|---|
+| `app/_components/featureData.ts` | Added audit-workflow feature entry |
+| `app/features/audit-workflow/page.tsx` | New — full detail page |
+
+**Decisions Made:**
+| Decision | Reasoning |
+|---|---|
+| Separate Audit Workflow from Audit Reports | Workflow (Setup → Conduct → Review) is distinct from the PDF output — splitting gives both pages more focus |
+| ISO 27001 Clause 10.1 callout | Remediation task tracking directly satisfies this clause — strong compliance credential for the ICP |
+| Positioned after Risk Register | Logical narrative: identify risks → audit against controls → manage the library → store evidence |
+
+---
 
 ### Session — 2026-06-19 (continued — feature detail pages)
 

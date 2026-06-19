@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  FileBarChart,
+  ClipboardCheck,
   ArrowLeft,
   ArrowRight,
-  LayoutDashboard,
-  Bot,
-  Gauge,
+  Layers,
+  CheckCircle2,
+  UserCheck,
+  Upload,
+  MessageSquare,
   AlertTriangle,
-  ClipboardCheck,
-  Download,
   ClipboardList,
   FolderLock,
-  Users,
+  FileBarChart,
   ShieldCheck,
-  RefreshCw,
+  Zap,
   Lock,
 } from "lucide-react";
 import { Nav } from "@/app/_components/Nav";
@@ -24,60 +24,59 @@ import { FadeUp } from "@/app/_components/FadeUp";
 import { CALENDLY_URL } from "@/app/_components/config";
 
 export const metadata: Metadata = {
-  title: "PDF Audit Reports — RiskGuard",
+  title: "Audit Workflow — RiskGuard",
   description:
-    "Board-ready PDF audit reports generated in one click from your live compliance data. AI executive summary, compliance score gauge, control coverage, and corrective action plans — automatically.",
+    "A structured 3-stage audit lifecycle — Setup, Conduct, Review — with per-control compliance scoring, findings documentation, remediation tasks, and external auditor collaboration.",
 };
 
 const CAPABILITIES = [
   {
-    icon: LayoutDashboard,
-    title: "10-section executive report",
-    desc: "Organisation details, audit scope, compliance framework coverage, risk register summary, control effectiveness, evidence status, audit findings, corrective action plan, and a full appendix — structured, consistent, and printable.",
+    icon: Layers,
+    title: "3-stage audit lifecycle",
+    desc: "Every audit moves through Setup → Conduct → Review. Define scope and select controls in Setup. Score each control and upload evidence in Conduct. Review findings, assign remediations, and close in Review.",
   },
   {
-    icon: Bot,
-    title: "AI executive summary",
-    desc: "Claude reads your live audit data and writes a plain-English narrative summary for the board. No compliance jargon. No copy-paste from a template. Regenerate on demand as your posture improves.",
-    model: "Claude Haiku",
+    icon: CheckCircle2,
+    title: "Per-control compliance scoring",
+    desc: "Score every control as compliant, partially compliant, or non-compliant. Add findings notes per control as you go — no separate spreadsheet, no context-switching.",
   },
   {
-    icon: Gauge,
-    title: "Compliance score gauge",
-    desc: "A visual percentage score derived from your control compliance results — compliant vs partially compliant vs non-compliant. At a glance, the board can see exactly where the organisation stands.",
+    icon: UserCheck,
+    title: "Remediation task management",
+    desc: "Every non-compliant control gets a remediation task — assigned owner, due date, and live status (open / in progress / resolved). Audit bodies can see exactly who owns each gap and when it will be fixed.",
+  },
+  {
+    icon: Upload,
+    title: "Evidence upload per control",
+    desc: "Upload supporting evidence directly to any control within the audit. Files are SHA-256 hashed on upload — the same tamper-evident integrity verification as the Evidence Locker.",
+  },
+  {
+    icon: MessageSquare,
+    title: "Per-control comment threads",
+    desc: "Internal team notes and external auditor comments live in the same thread per control — visually distinguished so you always know who said what and when.",
   },
   {
     icon: AlertTriangle,
-    title: "Priority findings",
-    desc: "Non-compliant and partially compliant controls are surfaced as findings, ranked by severity. Each finding references the specific evidence gap that caused it — no ambiguity about what needs fixing.",
-  },
-  {
-    icon: ClipboardCheck,
-    title: "Corrective Action Plan (CAP)",
-    desc: "ISO 27001 Clause 10.1 requires a documented corrective action process. RiskGuard generates a CAP table automatically — one row per finding, with the recommended action, the risk owner, and the target resolution date.",
-  },
-  {
-    icon: Download,
-    title: "One-click PDF export",
-    desc: "The report is generated from your live data and exported as a professionally formatted PDF. No spreadsheets, no manual formatting, no copy-paste errors. Share it with enterprise customers, auditors, or your board directly.",
+    title: "Priority findings surfacing",
+    desc: "Critical and high-severity non-compliant controls are pulled to the top of the review stage — so the most serious gaps are never buried under a long list of passing controls.",
   },
 ];
 
 const STEPS = [
   {
     number: "01",
-    title: "Generate",
-    desc: "Click 'Generate Report.' RiskGuard reads your entire compliance posture — risks, controls, evidence counts, compliance results, open findings — and assembles the full 10-section report in seconds. Claude writes the executive summary simultaneously.",
+    title: "Set up the audit",
+    desc: "Name the audit, select the framework, and choose which controls to assess. You can include all platform controls or a custom subset. Scope is locked in before work begins — no scope creep mid-audit.",
   },
   {
     number: "02",
-    title: "Review",
-    desc: "Preview the report before exporting. Check the compliance score, review the priority findings, and confirm the corrective action plan reflects your current remediation work. Edit control notes or findings directly — the report updates in real time.",
+    title: "Conduct the audit",
+    desc: "Work through each control: score it, add findings, upload evidence, and assign remediation tasks to owners with due dates. External auditors can view controls and add comments through their scoped portal access — without accessing the rest of the platform.",
   },
   {
     number: "03",
-    title: "Export and share",
-    desc: "Download as a professionally formatted PDF. Share with your enterprise customer's security team, hand it to your ISO 27001 auditor, or present it at the board level. Every claim in the report is traceable back to specific evidence in the locker.",
+    title: "Review and close",
+    desc: "Review priority findings, track remediation progress, and generate your executive PDF report. When all tasks are resolved and the report is signed off, close the audit — the full compliance record stays in RiskGuard permanently.",
   },
 ];
 
@@ -86,36 +85,23 @@ const RELATED = [
     slug: "risk-register",
     icon: ClipboardList,
     title: "Risk Register",
-    desc: "Risk scores, lifecycle stages, and owner assignments feed directly into the audit report's risk summary section — no manual data entry.",
+    desc: "Risks identified during an audit can be logged directly to the risk register — keeping your risk posture and audit findings in sync.",
   },
   {
     slug: "evidence-locker",
     icon: FolderLock,
     title: "Evidence Locker",
-    desc: "Evidence counts and SHA-256 integrity status per control appear in the report. Auditors can verify every claim traces back to a tamper-evident file.",
+    desc: "Evidence uploaded during audits uses the same SHA-256 integrity verification as the Evidence Locker — tamper-evident by default, no extra configuration needed.",
   },
   {
-    slug: "audit-workflow",
-    icon: ClipboardCheck,
-    title: "Audit Workflow",
-    desc: "The report is generated at the end of a completed audit — all control scores, findings, and remediation tasks flow in automatically. No copy-pasting from a spreadsheet.",
+    slug: "audit-reports",
+    icon: FileBarChart,
+    title: "PDF Audit Reports",
+    desc: "At the end of every completed audit, generate a 10-section board-ready PDF report with AI executive summary, compliance scores, priority findings, and a corrective action plan.",
   },
 ];
 
-const REPORT_SECTIONS = [
-  "Organisation & audit scope",
-  "Framework coverage summary",
-  "AI executive summary",
-  "Compliance score gauge",
-  "Risk register overview",
-  "Control effectiveness breakdown",
-  "Evidence status per control",
-  "Priority findings",
-  "Corrective Action Plan",
-  "Evidence appendix",
-];
-
-export default function AuditReportsPage() {
+export default function AuditWorkflowPage() {
   return (
     <>
       <Nav />
@@ -140,10 +126,10 @@ export default function AuditReportsPage() {
                   border: "1px solid rgba(79,110,247,0.2)",
                 }}
               >
-                <FileBarChart size={22} className="text-accent-bright" aria-hidden="true" />
+                <ClipboardCheck size={22} className="text-accent-bright" aria-hidden="true" />
               </div>
               <p className="text-xs font-medium text-accent-bright uppercase tracking-widest">
-                Audit Reporting
+                Audit Lifecycle
               </p>
             </div>
 
@@ -155,16 +141,16 @@ export default function AuditReportsPage() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Board-ready reports.
+              From setup to sign-off.
               <br />
-              <em className="italic">One click.</em>
+              <em className="italic">Every control, every finding.</em>
             </h1>
 
             <p className="text-[19px] text-gray-300 font-light leading-relaxed max-w-150 mb-10">
-              A professionally formatted PDF audit report — generated from your
-              live compliance data in seconds. AI executive summary, compliance
-              score, priority findings, and a corrective action plan, all in one
-              document. No templates, no manual formatting, no copy-paste errors.
+              A structured 3-stage audit lifecycle that takes your team from
+              scope selection to a closed, signed-off audit — with per-control
+              scoring, remediation tracking, evidence uploads, and auditor
+              collaboration all in one place.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
@@ -188,42 +174,11 @@ export default function AuditReportsPage() {
           </FadeUp>
         </section>
 
-        {/* Report sections strip */}
-        <section
-          className="py-10 px-6 border-y border-white/8"
-          style={{ background: "rgba(13,21,38,0.6)" }}
-        >
-          <div className="max-w-300 mx-auto">
-            <FadeUp>
-              <p className="text-[11px] font-medium text-gray-600 uppercase tracking-widest mb-6 text-center">
-                Every report includes
-              </p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                {REPORT_SECTIONS.map((section, i) => (
-                  <div
-                    key={section}
-                    className="flex items-center gap-2.5 bg-navy-light border border-white/8 rounded-xl px-4 py-3"
-                  >
-                    <span
-                      className="text-[11px] font-semibold shrink-0"
-                      style={{ color: "rgba(79,110,247,0.6)" }}
-                      aria-hidden="true"
-                    >
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="text-[12px] text-gray-400 leading-tight">{section}</span>
-                  </div>
-                ))}
-              </div>
-            </FadeUp>
-          </div>
-        </section>
-
         {/* Capabilities */}
         <section className="py-20 px-6 max-w-300 mx-auto">
           <FadeUp>
             <p className="text-xs font-medium text-accent-bright uppercase tracking-widest mb-3">
-              What it does
+              What it covers
             </p>
             <h2
               className="font-serif text-white mb-14 max-w-150"
@@ -233,43 +188,28 @@ export default function AuditReportsPage() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Every section your auditor expects
+              Everything an auditor needs to see. In one place.
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {CAPABILITIES.map((c) => (
                 <div
                   key={c.title}
-                  className="bg-navy-light border border-white/8 rounded-2xl p-8 flex flex-col"
+                  className="bg-navy-light border border-white/8 rounded-2xl p-8"
                 >
-                  <div className="flex items-start justify-between gap-3 mb-4">
-                    <div
-                      className="w-10 h-10 rounded-[9px] flex items-center justify-center shrink-0"
-                      style={{
-                        background: "rgba(79,110,247,0.12)",
-                        border: "1px solid rgba(79,110,247,0.18)",
-                      }}
-                    >
-                      <c.icon size={18} className="text-accent-bright" aria-hidden="true" />
-                    </div>
-                    {/* Model badge — only shown for AI-powered capabilities */}
-                    {c.model && (
-                      <span
-                        className="text-[11px] font-medium shrink-0 border rounded-full px-2.5 py-1"
-                        style={{
-                          color: "rgba(79,110,247,0.9)",
-                          borderColor: "rgba(79,110,247,0.2)",
-                          background: "rgba(79,110,247,0.08)",
-                        }}
-                      >
-                        {c.model}
-                      </span>
-                    )}
+                  <div
+                    className="w-11 h-11 rounded-[10px] flex items-center justify-center mb-5"
+                    style={{
+                      background: "rgba(79,110,247,0.12)",
+                      border: "1px solid rgba(79,110,247,0.18)",
+                    }}
+                  >
+                    <c.icon size={20} className="text-accent-bright" aria-hidden="true" />
                   </div>
-                  <h3 className="text-[15px] font-semibold text-white mb-2 tracking-tight">
+                  <h3 className="text-[16px] font-semibold text-white mb-3 tracking-tight">
                     {c.title}
                   </h3>
-                  <p className="text-[15px] text-gray-400 leading-relaxed font-light flex-1">{c.desc}</p>
+                  <p className="text-[15px] text-gray-400 leading-relaxed font-light">{c.desc}</p>
                 </div>
               ))}
             </div>
@@ -291,7 +231,7 @@ export default function AuditReportsPage() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Generate. Review. Export.
+                Setup. Conduct. Close.
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -312,7 +252,7 @@ export default function AuditReportsPage() {
           </div>
         </section>
 
-        {/* Why this matters callout */}
+        {/* Callout — ISO 27001 Clause 10.1 */}
         <section className="py-20 px-6 max-w-300 mx-auto">
           <FadeUp>
             <div
@@ -323,7 +263,7 @@ export default function AuditReportsPage() {
               }}
             >
               <p className="text-xs font-medium text-accent-bright uppercase tracking-widest mb-4">
-                Why this matters
+                ISO 27001 Clause 10.1
               </p>
               <h2
                 className="font-serif text-white mb-4 max-w-150"
@@ -333,18 +273,17 @@ export default function AuditReportsPage() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                The report that closes enterprise deals.
+                Remediation tracking that satisfies your certification body.
               </h2>
-              <p className="text-[17px] text-gray-300 font-light leading-relaxed max-w-150 mb-6">
-                Every enterprise customer's security team will send you a questionnaire or ask
-                for a compliance report before signing. Most startups spend days pulling this
-                together from spreadsheets, email threads, and shared drives. RiskGuard generates
-                a structured, evidence-backed report in seconds — so you can respond the same day.
+              <p className="text-[17px] text-gray-300 font-light leading-relaxed max-w-150 mb-4">
+                ISO 27001 Clause 10.1 requires a named owner and a deadline for every
+                nonconformity found during an audit. RiskGuard generates this automatically —
+                every non-compliant control gets a remediation task with owner, due date, and
+                status that flows directly into the executive PDF report.
               </p>
               <p className="text-[17px] text-gray-300 font-light leading-relaxed max-w-150">
-                ISO 27001 Clause 9.3 requires management review of the ISMS at planned intervals.
-                The RiskGuard audit report satisfies this requirement out of the box — generated
-                from live data, regenerated each cycle, with a full corrective action plan built in.
+                No post-audit spreadsheet. No chasing people for updates. The corrective action
+                plan is built as you audit.
               </p>
             </div>
           </FadeUp>
@@ -355,9 +294,9 @@ export default function AuditReportsPage() {
           <FadeUp>
             <div className="flex flex-wrap gap-4">
               {[
-                { icon: ShieldCheck, label: "ISO 27001 Clause 9.3 management review — satisfied by design" },
-                { icon: RefreshCw, label: "Regenerate on demand — always reflects your current compliance posture" },
-                { icon: Lock, label: "Every claim in the report traces to SHA-256-verified evidence" },
+                { icon: ShieldCheck, label: "Satisfies ISO 27001 Clause 10.1 — named owner + deadline per nonconformity" },
+                { icon: Zap, label: "External auditor collaboration via scoped OTP-verified portal" },
+                { icon: Lock, label: "SHA-256 evidence hashing on every file uploaded within an audit" },
               ].map((t) => (
                 <div
                   key={t.label}
