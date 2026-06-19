@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  Bot,
+  Bell,
   ArrowLeft,
   ArrowRight,
-  Wand2,
-  Brain,
-  SearchCheck,
-  FileQuestion,
+  AlertTriangle,
+  UserCheck,
+  Calendar,
+  Clock,
   MessageSquare,
-  FileText,
+  MousePointerClick,
   ClipboardList,
   CheckSquare,
-  FileBarChart,
-  Zap,
+  Bot,
   ShieldCheck,
-  Lock,
+  Zap,
+  RefreshCw,
 } from "lucide-react";
 import { Nav } from "@/app/_components/Nav";
 import { Footer } from "@/app/_components/Footer";
@@ -24,65 +24,72 @@ import { FadeUp } from "@/app/_components/FadeUp";
 import { CALENDLY_URL } from "@/app/_components/config";
 
 export const metadata: Metadata = {
-  title: "AI Advisor — RiskGuard",
+  title: "Notifications & Alerts — RiskGuard",
   description:
-    "Claude-powered AI that reads your risks, controls, and evidence to give you real, contextual compliance guidance — from one-click risk creation to bulk questionnaire automation.",
+    "Automated alerts keep your team on top of every risk, audit, and deadline. Instant notifications for key events, daily cron digests for overdue tasks — nothing falls through the cracks.",
 };
 
 const CAPABILITIES = [
   {
-    icon: Wand2,
-    title: "AI Risk Creation",
-    desc: "Describe a risk in plain English. Claude pre-populates the title, category, likelihood score, impact score, and a full mitigation plan. AI-suggested controls appear as toggleable pills — select and save in one click.",
-    model: "Claude Haiku",
+    icon: AlertTriangle,
+    title: "Risk event alerts",
+    desc: "Instant notifications when a risk is created, when its severity level changes, when it's assigned to a new owner, and when its status moves through the lifecycle. Every significant change surfaces immediately.",
   },
   {
-    icon: Brain,
-    title: "AI Risk Insights Panel",
-    desc: "One click opens a per-risk analysis: inherent risk score before mitigations, estimated residual score after your mitigation plan, key vulnerabilities, and the next recommended actions. Collapsible and always available.",
-    model: "Claude Sonnet",
+    icon: UserCheck,
+    title: "Assignment notifications",
+    desc: "When a risk or audit control is assigned to a team member, they're notified immediately with context — what was assigned, who assigned it, and the target resolution date. No chasing, no missed handoffs.",
   },
   {
-    icon: SearchCheck,
-    title: "AI Evidence Gap Detection",
-    desc: "Per-control AI review: compliance result (compliant / partially compliant / non-compliant), a list of missing evidence, and recommended remediation steps. Results are cached by evidence count — no redundant API calls.",
-    model: "Claude Sonnet",
+    icon: Clock,
+    title: "Overdue remediation digest",
+    desc: "A daily cron job runs at 9 AM every morning. Any remediation task past its due date is included in a digest to the task owner and the org admin. Overdue items don't quietly age in a backlog.",
   },
   {
-    icon: FileQuestion,
-    title: "Questionnaire Automation",
-    desc: "Upload a security questionnaire (CSV or PDF). Claude answers each question using your organisation's own policies, procedures, and evidence — extracted and indexed at upload time. Human review workflow built in.",
-    model: "Claude Haiku",
+    icon: Calendar,
+    title: "Compliance reminders",
+    desc: "Daily 9 AM cron-based reminders for upcoming control review dates, audit deadlines, and policy review cycles. Your compliance calendar, automated — so nothing slips between cycles.",
   },
   {
     icon: MessageSquare,
-    title: "Compliance Chat",
-    desc: "A streaming chat interface grounded in your own organisational data. Ask about your compliance posture, get control recommendations, or rehearse the questions your next ISO 27001 auditor is going to ask.",
-    model: "Claude Sonnet",
+    title: "Auditor comment alerts",
+    desc: "When an external auditor leaves a comment on evidence or a control via the Auditor Portal, the relevant internal team member is notified immediately — so you can respond before the audit stalls.",
   },
   {
-    icon: FileText,
-    title: "AI Executive Summary",
-    desc: "Generates a board-ready executive summary from your live audit data. Written in plain English, not legalese — regenerate on demand as your compliance posture improves.",
-    model: "Claude Haiku",
+    icon: MousePointerClick,
+    title: "Manual reminder buttons",
+    desc: "Need to send an ad-hoc nudge? Every risk and audit has a manual reminder button. One click sends a notification to the assigned owner — useful for chasing a specific remediation task without leaving the platform.",
   },
+];
+
+const ALERTS = [
+  { event: "Risk created", type: "Instant" },
+  { event: "Risk level changes", type: "Instant" },
+  { event: "Risk assigned to owner", type: "Instant" },
+  { event: "Risk status changes", type: "Instant" },
+  { event: "Overdue remediation", type: "Daily 9 AM" },
+  { event: "Audit assigned", type: "Instant" },
+  { event: "Audit completed", type: "Instant" },
+  { event: "Compliance reminder", type: "Daily 9 AM" },
+  { event: "Auditor comment added", type: "Instant" },
+  { event: "Manual reminder triggered", type: "On demand" },
 ];
 
 const STEPS = [
   {
     number: "01",
-    title: "Describe",
-    desc: "Type a risk in plain English: \"We store customer PII in a cloud database with no encryption at rest.\" Claude returns a fully structured risk entry: title, category, likelihood, impact, mitigation plan, and suggested controls — in under three seconds.",
+    title: "Events trigger automatically",
+    desc: "Every significant action in the platform — risk created, control assigned, finding added, evidence uploaded — fires an alert to the relevant person. There's nothing to configure. The notification logic is built into every workflow.",
   },
   {
     number: "02",
-    title: "Analyse",
-    desc: "Open the AI Insights Panel on any risk or the Evidence Gap panel on any control. Claude reads your current mitigation steps, linked controls, and uploaded evidence — then tells you exactly what's missing and what to do next.",
+    title: "Cron jobs catch the rest",
+    desc: "Some risks don't announce themselves — they just quietly go overdue. The daily 9 AM digest catches everything that slipped: overdue remediation tasks, approaching review dates, and upcoming audit deadlines. Delivered before the working day starts.",
   },
   {
     number: "03",
-    title: "Automate",
-    desc: "Upload a vendor security questionnaire or customer due diligence form. Claude answers each question by searching your organisation's own document knowledge base — policies, procedures, and evidence extracted at upload. Review, edit, and export as CSV.",
+    title: "Manual nudges when you need them",
+    desc: "For the moments where you need a direct nudge rather than a system event, every risk and audit has a manual reminder button. One click, one notification to the owner. No need to send an email outside the platform.",
   },
 ];
 
@@ -91,23 +98,23 @@ const RELATED = [
     slug: "risk-register",
     icon: ClipboardList,
     title: "Risk Register",
-    desc: "AI Risk Creation feeds directly into the risk register. One plain English sentence becomes a fully scored, owner-assigned, control-mapped risk entry.",
+    desc: "Risk created, assigned, level changed, status updated — all of these fire alerts automatically. The register and the notification system are tightly coupled.",
   },
   {
     slug: "controls-library",
     icon: CheckSquare,
     title: "Controls Library",
-    desc: "AI Evidence Gap Detection reads your control library and tells you exactly which evidence is missing per control — before your auditors find the gaps themselves.",
+    desc: "Control assignment notifications keep the right people informed when audit controls are assigned to them — without any manual communication required.",
   },
   {
-    slug: "audit-reports",
-    icon: FileBarChart,
-    title: "PDF Audit Reports",
-    desc: "The AI Executive Summary turns your live audit data into a board-ready narrative. Click generate. Review. Download.",
+    slug: "ai-advisor",
+    icon: Bot,
+    title: "AI Advisor",
+    desc: "The AI Advisor flags evidence gaps and recommends next actions. Notifications make sure those recommendations reach the right person before the next audit cycle.",
   },
 ];
 
-export default function AIAdvisorPage() {
+export default function NotificationsPage() {
   return (
     <>
       <Nav />
@@ -132,10 +139,10 @@ export default function AIAdvisorPage() {
                   border: "1px solid rgba(79,110,247,0.2)",
                 }}
               >
-                <Bot size={22} className="text-accent-bright" aria-hidden="true" />
+                <Bell size={22} className="text-accent-bright" aria-hidden="true" />
               </div>
               <p className="text-xs font-medium text-accent-bright uppercase tracking-widest">
-                AI-Powered Compliance
+                Alerts & Automation
               </p>
             </div>
 
@@ -147,17 +154,16 @@ export default function AIAdvisorPage() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Your compliance team
+              Know what needs attention.
               <br />
-              <em className="italic">powered by AI.</em>
+              <em className="italic">Before your auditor does.</em>
             </h1>
 
             <p className="text-[19px] text-gray-300 font-light leading-relaxed max-w-150 mb-10">
-              Claude reads your own risks, controls, and evidence to give you
-              real, contextual compliance guidance — not generic advice. From
-              one-click risk creation to bulk questionnaire automation, the AI
-              Advisor handles the tedious parts so your team can focus on fixing
-              the actual gaps.
+              Automated alerts for every meaningful event in your compliance
+              programme — plus daily cron digests for anything that goes overdue.
+              Your team stays on top of risks, remediation tasks, and audit
+              deadlines without any manual chasing.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
@@ -181,6 +187,43 @@ export default function AIAdvisorPage() {
           </FadeUp>
         </section>
 
+        {/* Alert reference strip */}
+        <section
+          className="py-10 px-6 border-y border-white/8"
+          style={{ background: "rgba(13,21,38,0.6)" }}
+        >
+          <div className="max-w-300 mx-auto">
+            <FadeUp>
+              <p className="text-[11px] font-medium text-gray-600 uppercase tracking-widest mb-6 text-center">
+                Every alert, at a glance
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                {ALERTS.map((a) => (
+                  <div
+                    key={a.event}
+                    className="bg-navy-light border border-white/8 rounded-xl px-4 py-3.5 flex flex-col gap-1"
+                  >
+                    <p className="text-[13px] font-medium text-white leading-snug">{a.event}</p>
+                    <span
+                      className="text-[11px] font-medium"
+                      style={{
+                        color:
+                          a.type === "Instant"
+                            ? "rgba(12,207,176,0.9)"
+                            : a.type === "Daily 9 AM"
+                            ? "rgba(79,110,247,0.9)"
+                            : "rgba(251,176,36,0.9)",
+                      }}
+                    >
+                      {a.type}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </FadeUp>
+          </div>
+        </section>
+
         {/* Capabilities */}
         <section className="py-20 px-6 max-w-300 mx-auto">
           <FadeUp>
@@ -195,41 +238,28 @@ export default function AIAdvisorPage() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Six AI capabilities. One platform.
+              Nothing falls through the cracks.
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {CAPABILITIES.map((c) => (
                 <div
                   key={c.title}
-                  className="bg-navy-light border border-white/8 rounded-2xl p-8 flex flex-col"
+                  className="bg-navy-light border border-white/8 rounded-2xl p-8"
                 >
-                  <div className="flex items-start justify-between gap-3 mb-4">
-                    <div
-                      className="w-10 h-10 rounded-[9px] flex items-center justify-center shrink-0"
-                      style={{
-                        background: "rgba(79,110,247,0.12)",
-                        border: "1px solid rgba(79,110,247,0.18)",
-                      }}
-                    >
-                      <c.icon size={18} className="text-accent-bright" aria-hidden="true" />
-                    </div>
-                    {/* Model badge */}
-                    <span
-                      className="text-[11px] font-medium shrink-0 border rounded-full px-2.5 py-1"
-                      style={{
-                        color: "rgba(79,110,247,0.9)",
-                        borderColor: "rgba(79,110,247,0.2)",
-                        background: "rgba(79,110,247,0.08)",
-                      }}
-                    >
-                      {c.model}
-                    </span>
+                  <div
+                    className="w-11 h-11 rounded-[10px] flex items-center justify-center mb-5"
+                    style={{
+                      background: "rgba(79,110,247,0.12)",
+                      border: "1px solid rgba(79,110,247,0.18)",
+                    }}
+                  >
+                    <c.icon size={20} className="text-accent-bright" aria-hidden="true" />
                   </div>
-                  <h3 className="text-[15px] font-semibold text-white mb-2 tracking-tight">
+                  <h3 className="text-[16px] font-semibold text-white mb-3 tracking-tight">
                     {c.title}
                   </h3>
-                  <p className="text-[15px] text-gray-400 leading-relaxed font-light flex-1">{c.desc}</p>
+                  <p className="text-[15px] text-gray-400 leading-relaxed font-light">{c.desc}</p>
                 </div>
               ))}
             </div>
@@ -251,7 +281,7 @@ export default function AIAdvisorPage() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Describe. Analyse. Automate.
+                Instant. Scheduled. On demand.
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -272,7 +302,7 @@ export default function AIAdvisorPage() {
           </div>
         </section>
 
-        {/* Cost-efficient model routing callout */}
+        {/* Callout */}
         <section className="py-20 px-6 max-w-300 mx-auto">
           <FadeUp>
             <div
@@ -283,7 +313,7 @@ export default function AIAdvisorPage() {
               }}
             >
               <p className="text-xs font-medium text-accent-bright uppercase tracking-widest mb-4">
-                Smart model routing
+                The problem with manual compliance tracking
               </p>
               <h2
                 className="font-serif text-white mb-4 max-w-150"
@@ -293,17 +323,17 @@ export default function AIAdvisorPage() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Fast when speed matters. Deep when it counts.
+                Risks go overdue in spreadsheets. Not in RiskGuard.
               </h2>
               <p className="text-[17px] text-gray-300 font-light leading-relaxed max-w-150 mb-6">
-                RiskGuard routes each AI task to the right Claude model. Structured tasks
-                like risk creation and questionnaire answering use Claude Haiku — fast and
-                cost-efficient. Complex reasoning like evidence gap analysis and risk insights
-                uses Claude Sonnet — for answers you can actually act on.
+                In a spreadsheet-based compliance process, an overdue remediation task only gets
+                noticed when someone manually reviews the tracker — which typically happens the
+                week before an audit, not the week it went overdue. By then it&apos;s too late to fix
+                it cleanly.
               </p>
-              <p className="text-[15px] text-gray-400 font-light">
-                Evidence review results are cached by evidence count — so you're never charged
-                twice for the same analysis.
+              <p className="text-[17px] text-gray-300 font-light leading-relaxed max-w-150">
+                RiskGuard&apos;s daily cron digest catches overdue items on day one — before they
+                become findings. Before your auditor finds them first.
               </p>
             </div>
           </FadeUp>
@@ -314,9 +344,9 @@ export default function AIAdvisorPage() {
           <FadeUp>
             <div className="flex flex-wrap gap-4">
               {[
-                { icon: Zap, label: "Claude Haiku for speed · Claude Sonnet for depth — cost-optimised routing" },
-                { icon: ShieldCheck, label: "Evidence review results cached — no redundant API calls" },
-                { icon: Lock, label: "Your evidence is never used to train external AI models" },
+                { icon: Zap, label: "Instant alerts on every meaningful risk and audit event" },
+                { icon: RefreshCw, label: "Daily 9 AM cron digest — overdue items surface before the working day starts" },
+                { icon: ShieldCheck, label: "Manual reminder buttons on every risk and audit — one click, one notification" },
               ].map((t) => (
                 <div
                   key={t.label}

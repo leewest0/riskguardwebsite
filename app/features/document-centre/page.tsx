@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  Bot,
+  BookOpen,
   ArrowLeft,
   ArrowRight,
-  Wand2,
-  Brain,
-  SearchCheck,
-  FileQuestion,
-  MessageSquare,
+  Upload,
+  Search,
   FileText,
-  ClipboardList,
+  Tag,
+  AlertCircle,
+  Trash2,
+  FolderLock,
+  Bot,
   CheckSquare,
-  FileBarChart,
-  Zap,
   ShieldCheck,
-  Lock,
+  Layers,
+  Zap,
 } from "lucide-react";
 import { Nav } from "@/app/_components/Nav";
 import { Footer } from "@/app/_components/Footer";
@@ -24,90 +24,84 @@ import { FadeUp } from "@/app/_components/FadeUp";
 import { CALENDLY_URL } from "@/app/_components/config";
 
 export const metadata: Metadata = {
-  title: "AI Advisor — RiskGuard",
+  title: "Document Centre — RiskGuard",
   description:
-    "Claude-powered AI that reads your risks, controls, and evidence to give you real, contextual compliance guidance — from one-click risk creation to bulk questionnaire automation.",
+    "A centralised library for all your policies, procedures, and compliance certificates. Bulk upload, AI-powered text extraction, and full-text search — all in one place.",
 };
 
 const CAPABILITIES = [
   {
-    icon: Wand2,
-    title: "AI Risk Creation",
-    desc: "Describe a risk in plain English. Claude pre-populates the title, category, likelihood score, impact score, and a full mitigation plan. AI-suggested controls appear as toggleable pills — select and save in one click.",
-    model: "Claude Haiku",
+    icon: Upload,
+    title: "Bulk multi-file upload",
+    desc: "Drag and drop multiple files at once or use the multi-file picker. Each file gets its own editable name field, a live status indicator (uploading / done / warning / error), and the same document type and category applied to the whole batch.",
   },
   {
-    icon: Brain,
-    title: "AI Risk Insights Panel",
-    desc: "One click opens a per-risk analysis: inherent risk score before mitigations, estimated residual score after your mitigation plan, key vulnerabilities, and the next recommended actions. Collapsible and always available.",
-    model: "Claude Sonnet",
-  },
-  {
-    icon: SearchCheck,
-    title: "AI Evidence Gap Detection",
-    desc: "Per-control AI review: compliance result (compliant / partially compliant / non-compliant), a list of missing evidence, and recommended remediation steps. Results are cached by evidence count — no redundant API calls.",
-    model: "Claude Sonnet",
-  },
-  {
-    icon: FileQuestion,
-    title: "Questionnaire Automation",
-    desc: "Upload a security questionnaire (CSV or PDF). Claude answers each question using your organisation's own policies, procedures, and evidence — extracted and indexed at upload time. Human review workflow built in.",
-    model: "Claude Haiku",
-  },
-  {
-    icon: MessageSquare,
-    title: "Compliance Chat",
-    desc: "A streaming chat interface grounded in your own organisational data. Ask about your compliance posture, get control recommendations, or rehearse the questions your next ISO 27001 auditor is going to ask.",
-    model: "Claude Sonnet",
+    icon: Search,
+    title: "AI-powered full-text search",
+    desc: "Text is extracted from every document at upload and indexed for search. Find the exact policy clause that answers a questionnaire question — across all your documents at once — without manually opening a single file.",
   },
   {
     icon: FileText,
-    title: "AI Executive Summary",
-    desc: "Generates a board-ready executive summary from your live audit data. Written in plain English, not legalese — regenerate on demand as your compliance posture improves.",
-    model: "Claude Haiku",
+    title: "Supported formats",
+    desc: "PDF, DOCX, TXT, and Markdown — the formats your compliance programme actually uses. Scanned PDFs are flagged as 'Limited' (not failed) — they're stored and accessible, just not fully text-searchable.",
+  },
+  {
+    icon: Tag,
+    title: "Document metadata",
+    desc: "Name, category, version, last reviewed date, and next review date per document. Stay on top of your policy review cycle without a separate tracker — RiskGuard surfaces documents approaching their review date.",
+  },
+  {
+    icon: AlertCircle,
+    title: "AI search status",
+    desc: "Every document shows one of four statuses: Searchable (full text extracted), Limited (low text / scanned PDF), No text (extraction failed), or Pending (in progress). You always know exactly what the AI can and can't search.",
+  },
+  {
+    icon: Trash2,
+    title: "Delete with knowledge-base removal",
+    desc: "When you delete a document, it's removed from storage and from the AI knowledge base simultaneously. No orphaned content. No stale policies contaminating your questionnaire answers.",
   },
 ];
 
 const STEPS = [
   {
     number: "01",
-    title: "Describe",
-    desc: "Type a risk in plain English: \"We store customer PII in a cloud database with no encryption at rest.\" Claude returns a fully structured risk entry: title, category, likelihood, impact, mitigation plan, and suggested controls — in under three seconds.",
+    title: "Upload your documents",
+    desc: "Drag and drop your policies, procedures, and certificates in bulk. RiskGuard extracts the text from each file immediately — PDFs, Word documents, and Markdown are all indexed in seconds. Scanned PDFs are stored with a 'Limited' flag so you know their search coverage upfront.",
   },
   {
     number: "02",
-    title: "Analyse",
-    desc: "Open the AI Insights Panel on any risk or the Evidence Gap panel on any control. Claude reads your current mitigation steps, linked controls, and uploaded evidence — then tells you exactly what's missing and what to do next.",
+    title: "Organise and review",
+    desc: "Set document categories, version numbers, and review dates. The Document Centre gives you a clean tabbed view — Policies, Procedures, Evidence — with live document counts and search across all three. When a document is approaching its next review date, you'll know.",
   },
   {
     number: "03",
-    title: "Automate",
-    desc: "Upload a vendor security questionnaire or customer due diligence form. Claude answers each question by searching your organisation's own document knowledge base — policies, procedures, and evidence extracted at upload. Review, edit, and export as CSV.",
+    title: "Let AI use it",
+    desc: "Once uploaded, your documents feed directly into the AI Advisor. When you ask the AI a compliance question or run Questionnaire Automation, it searches your own document library for the most relevant policy excerpts and control descriptions — not generic training data.",
   },
 ];
 
 const RELATED = [
   {
-    slug: "risk-register",
-    icon: ClipboardList,
-    title: "Risk Register",
-    desc: "AI Risk Creation feeds directly into the risk register. One plain English sentence becomes a fully scored, owner-assigned, control-mapped risk entry.",
+    slug: "ai-advisor",
+    icon: Bot,
+    title: "AI Advisor",
+    desc: "The AI Advisor's Questionnaire Automation pulls directly from your Document Centre. Upload a vendor questionnaire and Claude answers each question using your own policies and procedures.",
+  },
+  {
+    slug: "evidence-locker",
+    icon: FolderLock,
+    title: "Evidence Locker",
+    desc: "Evidence files are SHA-256 verified in the locker. Policies and procedures live in the Document Centre. Together they cover everything your auditors need to see.",
   },
   {
     slug: "controls-library",
     icon: CheckSquare,
     title: "Controls Library",
-    desc: "AI Evidence Gap Detection reads your control library and tells you exactly which evidence is missing per control — before your auditors find the gaps themselves.",
-  },
-  {
-    slug: "audit-reports",
-    icon: FileBarChart,
-    title: "PDF Audit Reports",
-    desc: "The AI Executive Summary turns your live audit data into a board-ready narrative. Click generate. Review. Download.",
+    desc: "Controls reference specific policy documents as their supporting evidence. The Document Centre gives you one place to manage and update those policies as your compliance posture evolves.",
   },
 ];
 
-export default function AIAdvisorPage() {
+export default function DocumentCentrePage() {
   return (
     <>
       <Nav />
@@ -132,10 +126,10 @@ export default function AIAdvisorPage() {
                   border: "1px solid rgba(79,110,247,0.2)",
                 }}
               >
-                <Bot size={22} className="text-accent-bright" aria-hidden="true" />
+                <BookOpen size={22} className="text-accent-bright" aria-hidden="true" />
               </div>
               <p className="text-xs font-medium text-accent-bright uppercase tracking-widest">
-                AI-Powered Compliance
+                Policy Management
               </p>
             </div>
 
@@ -147,17 +141,16 @@ export default function AIAdvisorPage() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Your compliance team
+              All your policies.
               <br />
-              <em className="italic">powered by AI.</em>
+              <em className="italic">One searchable library.</em>
             </h1>
 
             <p className="text-[19px] text-gray-300 font-light leading-relaxed max-w-150 mb-10">
-              Claude reads your own risks, controls, and evidence to give you
-              real, contextual compliance guidance — not generic advice. From
-              one-click risk creation to bulk questionnaire automation, the AI
-              Advisor handles the tedious parts so your team can focus on fixing
-              the actual gaps.
+              A centralised library for every policy, procedure, and certificate
+              your compliance programme depends on. Bulk upload, AI text
+              extraction, and full-text search — so your documents work for you
+              instead of sitting in a folder somewhere.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
@@ -195,41 +188,28 @@ export default function AIAdvisorPage() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Six AI capabilities. One platform.
+              Upload once. Find anything.
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {CAPABILITIES.map((c) => (
                 <div
                   key={c.title}
-                  className="bg-navy-light border border-white/8 rounded-2xl p-8 flex flex-col"
+                  className="bg-navy-light border border-white/8 rounded-2xl p-8"
                 >
-                  <div className="flex items-start justify-between gap-3 mb-4">
-                    <div
-                      className="w-10 h-10 rounded-[9px] flex items-center justify-center shrink-0"
-                      style={{
-                        background: "rgba(79,110,247,0.12)",
-                        border: "1px solid rgba(79,110,247,0.18)",
-                      }}
-                    >
-                      <c.icon size={18} className="text-accent-bright" aria-hidden="true" />
-                    </div>
-                    {/* Model badge */}
-                    <span
-                      className="text-[11px] font-medium shrink-0 border rounded-full px-2.5 py-1"
-                      style={{
-                        color: "rgba(79,110,247,0.9)",
-                        borderColor: "rgba(79,110,247,0.2)",
-                        background: "rgba(79,110,247,0.08)",
-                      }}
-                    >
-                      {c.model}
-                    </span>
+                  <div
+                    className="w-11 h-11 rounded-[10px] flex items-center justify-center mb-5"
+                    style={{
+                      background: "rgba(79,110,247,0.12)",
+                      border: "1px solid rgba(79,110,247,0.18)",
+                    }}
+                  >
+                    <c.icon size={20} className="text-accent-bright" aria-hidden="true" />
                   </div>
-                  <h3 className="text-[15px] font-semibold text-white mb-2 tracking-tight">
+                  <h3 className="text-[16px] font-semibold text-white mb-3 tracking-tight">
                     {c.title}
                   </h3>
-                  <p className="text-[15px] text-gray-400 leading-relaxed font-light flex-1">{c.desc}</p>
+                  <p className="text-[15px] text-gray-400 leading-relaxed font-light">{c.desc}</p>
                 </div>
               ))}
             </div>
@@ -251,7 +231,7 @@ export default function AIAdvisorPage() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Describe. Analyse. Automate.
+                Upload. Organise. Let AI do the rest.
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -272,7 +252,7 @@ export default function AIAdvisorPage() {
           </div>
         </section>
 
-        {/* Cost-efficient model routing callout */}
+        {/* Callout */}
         <section className="py-20 px-6 max-w-300 mx-auto">
           <FadeUp>
             <div
@@ -283,7 +263,7 @@ export default function AIAdvisorPage() {
               }}
             >
               <p className="text-xs font-medium text-accent-bright uppercase tracking-widest mb-4">
-                Smart model routing
+                The knowledge base behind the AI
               </p>
               <h2
                 className="font-serif text-white mb-4 max-w-150"
@@ -293,17 +273,17 @@ export default function AIAdvisorPage() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Fast when speed matters. Deep when it counts.
+                Your documents become your AI&apos;s memory.
               </h2>
               <p className="text-[17px] text-gray-300 font-light leading-relaxed max-w-150 mb-6">
-                RiskGuard routes each AI task to the right Claude model. Structured tasks
-                like risk creation and questionnaire answering use Claude Haiku — fast and
-                cost-efficient. Complex reasoning like evidence gap analysis and risk insights
-                uses Claude Sonnet — for answers you can actually act on.
+                When RiskGuard&apos;s AI Advisor answers a questionnaire question or gives compliance
+                guidance, it isn&apos;t guessing from generic training data. It&apos;s searching your Document
+                Centre — finding the most relevant excerpt from your actual Information Security
+                Policy, your Access Control Procedure, your Business Continuity Plan.
               </p>
-              <p className="text-[15px] text-gray-400 font-light">
-                Evidence review results are cached by evidence count — so you're never charged
-                twice for the same analysis.
+              <p className="text-[17px] text-gray-300 font-light leading-relaxed max-w-150">
+                That&apos;s the difference between an AI assistant and a compliance assistant. One knows
+                your organisation.
               </p>
             </div>
           </FadeUp>
@@ -314,9 +294,9 @@ export default function AIAdvisorPage() {
           <FadeUp>
             <div className="flex flex-wrap gap-4">
               {[
-                { icon: Zap, label: "Claude Haiku for speed · Claude Sonnet for depth — cost-optimised routing" },
-                { icon: ShieldCheck, label: "Evidence review results cached — no redundant API calls" },
-                { icon: Lock, label: "Your evidence is never used to train external AI models" },
+                { icon: ShieldCheck, label: "Org-scoped storage RLS — cross-tenant isolation enforced at the storage layer" },
+                { icon: Layers, label: "Three document types: Policies, Procedures, Evidence Certificates" },
+                { icon: Zap, label: "Text extracted at upload — documents are searchable within seconds" },
               ].map((t) => (
                 <div
                   key={t.label}

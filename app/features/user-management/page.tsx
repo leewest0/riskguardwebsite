@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  Bot,
+  UserCog,
   ArrowLeft,
   ArrowRight,
-  Wand2,
-  Brain,
-  SearchCheck,
-  FileQuestion,
-  MessageSquare,
-  FileText,
+  Mail,
+  Shield,
+  Users,
+  Key,
+  UserX,
+  Clock,
   ClipboardList,
-  CheckSquare,
+  FolderLock,
   FileBarChart,
-  Zap,
   ShieldCheck,
   Lock,
+  Database,
 } from "lucide-react";
 import { Nav } from "@/app/_components/Nav";
 import { Footer } from "@/app/_components/Footer";
@@ -24,90 +24,93 @@ import { FadeUp } from "@/app/_components/FadeUp";
 import { CALENDLY_URL } from "@/app/_components/config";
 
 export const metadata: Metadata = {
-  title: "AI Advisor — RiskGuard",
+  title: "User Management — RiskGuard",
   description:
-    "Claude-powered AI that reads your risks, controls, and evidence to give you real, contextual compliance guidance — from one-click risk creation to bulk questionnaire automation.",
+    "Invite-only onboarding with a 6-role RBAC system. Every user gets exactly the access their role requires — enforced at the database layer, not just the UI.",
 };
+
+const ROLES = [
+  { name: "Admin", desc: "Full system access — invite, edit, and delete users; manage all settings" },
+  { name: "Auditor", desc: "Full audit management — write controls, upload evidence, manage questionnaires" },
+  { name: "Risk Owner", desc: "Edit own assigned risks (status, mitigation, notes); read-only elsewhere" },
+  { name: "Member", desc: "Update status on assigned audit controls and upload evidence to assigned controls" },
+  { name: "Viewer", desc: "Read-only access across all areas — for stakeholders who need visibility, not edit rights" },
+  { name: "External Auditor", desc: "Limited temporary access via OTP-verified portal — scoped to what you choose to share" },
+];
 
 const CAPABILITIES = [
   {
-    icon: Wand2,
-    title: "AI Risk Creation",
-    desc: "Describe a risk in plain English. Claude pre-populates the title, category, likelihood score, impact score, and a full mitigation plan. AI-suggested controls appear as toggleable pills — select and save in one click.",
-    model: "Claude Haiku",
+    icon: Mail,
+    title: "Invite-only onboarding",
+    desc: "No open registration. Admins invite users by email and role. Invitees receive a secure link, set their own password, and land directly in the organisation. The invite link is single-use and expires after 24 hours.",
   },
   {
-    icon: Brain,
-    title: "AI Risk Insights Panel",
-    desc: "One click opens a per-risk analysis: inherent risk score before mitigations, estimated residual score after your mitigation plan, key vulnerabilities, and the next recommended actions. Collapsible and always available.",
-    model: "Claude Sonnet",
+    icon: Shield,
+    title: "6-role RBAC",
+    desc: "Admin, Auditor, Risk Owner, Member, Viewer, External Auditor. Each role is defined with specific, minimal permissions — enforced in both API middleware and Supabase Row Level Security write policies.",
   },
   {
-    icon: SearchCheck,
-    title: "AI Evidence Gap Detection",
-    desc: "Per-control AI review: compliance result (compliant / partially compliant / non-compliant), a list of missing evidence, and recommended remediation steps. Results are cached by evidence count — no redundant API calls.",
-    model: "Claude Sonnet",
+    icon: Key,
+    title: "Database-layer enforcement",
+    desc: "Permissions aren't just enforced at the UI layer. Every role check goes through `get_my_role()` — a SECURITY DEFINER function that enforces the access model at the database itself. There's no way to bypass it from the frontend.",
   },
   {
-    icon: FileQuestion,
-    title: "Questionnaire Automation",
-    desc: "Upload a security questionnaire (CSV or PDF). Claude answers each question using your organisation's own policies, procedures, and evidence — extracted and indexed at upload time. Human review workflow built in.",
-    model: "Claude Haiku",
+    icon: Users,
+    title: "Team visibility",
+    desc: "See every active user, their role, their last login, and their current status. Admins can update roles instantly — without any downtime or re-invitation required.",
   },
   {
-    icon: MessageSquare,
-    title: "Compliance Chat",
-    desc: "A streaming chat interface grounded in your own organisational data. Ask about your compliance posture, get control recommendations, or rehearse the questions your next ISO 27001 auditor is going to ask.",
-    model: "Claude Sonnet",
+    icon: Clock,
+    title: "Last login tracking",
+    desc: "Every login event is tracked with a timestamp per user. Know who's active, who hasn't logged in recently, and when access patterns change — all without a separate audit tool.",
   },
   {
-    icon: FileText,
-    title: "AI Executive Summary",
-    desc: "Generates a board-ready executive summary from your live audit data. Written in plain English, not legalese — regenerate on demand as your compliance posture improves.",
-    model: "Claude Haiku",
+    icon: UserX,
+    title: "Full user deletion",
+    desc: "Remove a user completely — their profile row and their Supabase Auth account are deleted atomically. No orphaned auth records, no data leakage, no ghost accounts.",
   },
 ];
 
 const STEPS = [
   {
     number: "01",
-    title: "Describe",
-    desc: "Type a risk in plain English: \"We store customer PII in a cloud database with no encryption at rest.\" Claude returns a fully structured risk entry: title, category, likelihood, impact, mitigation plan, and suggested controls — in under three seconds.",
+    title: "Invite by email and role",
+    desc: "Enter the user's email and select their role. RiskGuard sends them a secure invite link. They click it, set their password, and are immediately placed into your organisation with exactly the permissions their role carries — nothing more.",
   },
   {
     number: "02",
-    title: "Analyse",
-    desc: "Open the AI Insights Panel on any risk or the Evidence Gap panel on any control. Claude reads your current mitigation steps, linked controls, and uploaded evidence — then tells you exactly what's missing and what to do next.",
+    title: "They join — you stay in control",
+    desc: "From the moment they join, every action they take is governed by their role. A Risk Owner can edit their assigned risks and nothing else. A Member can update controls they're assigned to. The system enforces this at every layer — not just the page they can see.",
   },
   {
     number: "03",
-    title: "Automate",
-    desc: "Upload a vendor security questionnaire or customer due diligence form. Claude answers each question by searching your organisation's own document knowledge base — policies, procedures, and evidence extracted at upload. Review, edit, and export as CSV.",
+    title: "Update or remove anytime",
+    desc: "Promote a Member to Auditor. Downgrade a role. Remove a user entirely. All changes take effect immediately. When someone leaves the organisation, their account is deleted — auth record and all. No cleanup required.",
   },
 ];
 
 const RELATED = [
   {
-    slug: "risk-register",
-    icon: ClipboardList,
-    title: "Risk Register",
-    desc: "AI Risk Creation feeds directly into the risk register. One plain English sentence becomes a fully scored, owner-assigned, control-mapped risk entry.",
+    slug: "auditor-portal",
+    icon: Users,
+    title: "External Auditor Portal",
+    desc: "External auditors don't need a user account. They get a time-limited, OTP-verified portal link that gives them exactly the access scope you define.",
   },
   {
-    slug: "controls-library",
-    icon: CheckSquare,
-    title: "Controls Library",
-    desc: "AI Evidence Gap Detection reads your control library and tells you exactly which evidence is missing per control — before your auditors find the gaps themselves.",
+    slug: "evidence-locker",
+    icon: FolderLock,
+    title: "Evidence Locker",
+    desc: "Row-level security means users can only access evidence from their own organisation. The RBAC system and the locker's security model are built on the same foundation.",
   },
   {
     slug: "audit-reports",
     icon: FileBarChart,
     title: "PDF Audit Reports",
-    desc: "The AI Executive Summary turns your live audit data into a board-ready narrative. Click generate. Review. Download.",
+    desc: "Audit reports show control assessments, findings, and corrective actions. The RBAC system controls who can generate, view, and export these reports.",
   },
 ];
 
-export default function AIAdvisorPage() {
+export default function UserManagementPage() {
   return (
     <>
       <Nav />
@@ -132,10 +135,10 @@ export default function AIAdvisorPage() {
                   border: "1px solid rgba(79,110,247,0.2)",
                 }}
               >
-                <Bot size={22} className="text-accent-bright" aria-hidden="true" />
+                <UserCog size={22} className="text-accent-bright" aria-hidden="true" />
               </div>
               <p className="text-xs font-medium text-accent-bright uppercase tracking-widest">
-                AI-Powered Compliance
+                Access Control
               </p>
             </div>
 
@@ -147,17 +150,15 @@ export default function AIAdvisorPage() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Your compliance team
+              The right access for
               <br />
-              <em className="italic">powered by AI.</em>
+              <em className="italic">the right people.</em>
             </h1>
 
             <p className="text-[19px] text-gray-300 font-light leading-relaxed max-w-150 mb-10">
-              Claude reads your own risks, controls, and evidence to give you
-              real, contextual compliance guidance — not generic advice. From
-              one-click risk creation to bulk questionnaire automation, the AI
-              Advisor handles the tedious parts so your team can focus on fixing
-              the actual gaps.
+              Invite-only onboarding with a 6-role RBAC system — enforced at the
+              database layer, not just the UI. Every user gets exactly the access
+              their role requires. Nothing more, nothing less.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
@@ -181,6 +182,31 @@ export default function AIAdvisorPage() {
           </FadeUp>
         </section>
 
+        {/* Role reference */}
+        <section
+          className="py-10 px-6 border-y border-white/8"
+          style={{ background: "rgba(13,21,38,0.6)" }}
+        >
+          <div className="max-w-300 mx-auto">
+            <FadeUp>
+              <p className="text-[11px] font-medium text-gray-600 uppercase tracking-widest mb-6 text-center">
+                6 roles — least-privilege by design
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {ROLES.map((r) => (
+                  <div
+                    key={r.name}
+                    className="bg-navy-light border border-white/8 rounded-xl px-5 py-4"
+                  >
+                    <p className="text-[13px] font-semibold text-white mb-1">{r.name}</p>
+                    <p className="text-[13px] text-gray-500 leading-snug">{r.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </FadeUp>
+          </div>
+        </section>
+
         {/* Capabilities */}
         <section className="py-20 px-6 max-w-300 mx-auto">
           <FadeUp>
@@ -195,41 +221,28 @@ export default function AIAdvisorPage() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Six AI capabilities. One platform.
+              Secure by default. Managed with ease.
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {CAPABILITIES.map((c) => (
                 <div
                   key={c.title}
-                  className="bg-navy-light border border-white/8 rounded-2xl p-8 flex flex-col"
+                  className="bg-navy-light border border-white/8 rounded-2xl p-8"
                 >
-                  <div className="flex items-start justify-between gap-3 mb-4">
-                    <div
-                      className="w-10 h-10 rounded-[9px] flex items-center justify-center shrink-0"
-                      style={{
-                        background: "rgba(79,110,247,0.12)",
-                        border: "1px solid rgba(79,110,247,0.18)",
-                      }}
-                    >
-                      <c.icon size={18} className="text-accent-bright" aria-hidden="true" />
-                    </div>
-                    {/* Model badge */}
-                    <span
-                      className="text-[11px] font-medium shrink-0 border rounded-full px-2.5 py-1"
-                      style={{
-                        color: "rgba(79,110,247,0.9)",
-                        borderColor: "rgba(79,110,247,0.2)",
-                        background: "rgba(79,110,247,0.08)",
-                      }}
-                    >
-                      {c.model}
-                    </span>
+                  <div
+                    className="w-11 h-11 rounded-[10px] flex items-center justify-center mb-5"
+                    style={{
+                      background: "rgba(79,110,247,0.12)",
+                      border: "1px solid rgba(79,110,247,0.18)",
+                    }}
+                  >
+                    <c.icon size={20} className="text-accent-bright" aria-hidden="true" />
                   </div>
-                  <h3 className="text-[15px] font-semibold text-white mb-2 tracking-tight">
+                  <h3 className="text-[16px] font-semibold text-white mb-3 tracking-tight">
                     {c.title}
                   </h3>
-                  <p className="text-[15px] text-gray-400 leading-relaxed font-light flex-1">{c.desc}</p>
+                  <p className="text-[15px] text-gray-400 leading-relaxed font-light">{c.desc}</p>
                 </div>
               ))}
             </div>
@@ -251,7 +264,7 @@ export default function AIAdvisorPage() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Describe. Analyse. Automate.
+                Invite. Assign. Control.
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -272,7 +285,7 @@ export default function AIAdvisorPage() {
           </div>
         </section>
 
-        {/* Cost-efficient model routing callout */}
+        {/* Security callout */}
         <section className="py-20 px-6 max-w-300 mx-auto">
           <FadeUp>
             <div
@@ -283,7 +296,7 @@ export default function AIAdvisorPage() {
               }}
             >
               <p className="text-xs font-medium text-accent-bright uppercase tracking-widest mb-4">
-                Smart model routing
+                SOC 2 CC6.1 — Logical access controls
               </p>
               <h2
                 className="font-serif text-white mb-4 max-w-150"
@@ -293,17 +306,18 @@ export default function AIAdvisorPage() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Fast when speed matters. Deep when it counts.
+                Access controls your auditor will actually believe.
               </h2>
               <p className="text-[17px] text-gray-300 font-light leading-relaxed max-w-150 mb-6">
-                RiskGuard routes each AI task to the right Claude model. Structured tasks
-                like risk creation and questionnaire answering use Claude Haiku — fast and
-                cost-efficient. Complex reasoning like evidence gap analysis and risk insights
-                uses Claude Sonnet — for answers you can actually act on.
+                SOC 2 Trust Services Criteria CC6.1 requires that logical access to systems is
+                restricted to authorised users and based on least privilege. RiskGuard&apos;s 6-role
+                system satisfies this by design — each role is defined with the minimum permissions
+                needed and nothing more.
               </p>
-              <p className="text-[15px] text-gray-400 font-light">
-                Evidence review results are cached by evidence count — so you're never charged
-                twice for the same analysis.
+              <p className="text-[17px] text-gray-300 font-light leading-relaxed max-w-150">
+                And because enforcement happens at the database layer via Row Level Security —
+                not just in the UI — your SOC 2 auditor can verify the access controls are real,
+                not just a UI lock on a page that a direct API call could bypass.
               </p>
             </div>
           </FadeUp>
@@ -314,9 +328,9 @@ export default function AIAdvisorPage() {
           <FadeUp>
             <div className="flex flex-wrap gap-4">
               {[
-                { icon: Zap, label: "Claude Haiku for speed · Claude Sonnet for depth — cost-optimised routing" },
-                { icon: ShieldCheck, label: "Evidence review results cached — no redundant API calls" },
-                { icon: Lock, label: "Your evidence is never used to train external AI models" },
+                { icon: ShieldCheck, label: "Invite-only — no open registration, no unauthorised account creation" },
+                { icon: Database, label: "Row-level security enforced at the database layer on every request" },
+                { icon: Lock, label: "Full user deletion — profile row and Auth account removed atomically" },
               ].map((t) => (
                 <div
                   key={t.label}

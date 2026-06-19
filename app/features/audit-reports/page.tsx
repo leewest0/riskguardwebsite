@@ -236,11 +236,11 @@ export default function AuditReportsPage() {
               Every section your auditor expects
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {CAPABILITIES.map((c) => (
                 <div
                   key={c.title}
-                  className="bg-navy-light border border-white/8 rounded-2xl p-7 flex flex-col"
+                  className="bg-navy-light border border-white/8 rounded-2xl p-8 flex flex-col"
                 >
                   <div className="flex items-start justify-between gap-3 mb-4">
                     <div
@@ -269,7 +269,7 @@ export default function AuditReportsPage() {
                   <h3 className="text-[15px] font-semibold text-white mb-2 tracking-tight">
                     {c.title}
                   </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed font-light flex-1">{c.desc}</p>
+                  <p className="text-[15px] text-gray-400 leading-relaxed font-light flex-1">{c.desc}</p>
                 </div>
               ))}
             </div>
@@ -304,7 +304,7 @@ export default function AuditReportsPage() {
                       {s.number}
                     </span>
                     <h3 className="text-lg font-semibold text-white mb-3">{s.title}</h3>
-                    <p className="text-sm text-gray-500 leading-relaxed font-light">{s.desc}</p>
+                    <p className="text-[15px] text-gray-400 leading-relaxed font-light">{s.desc}</p>
                   </div>
                 ))}
               </div>
@@ -389,12 +389,12 @@ export default function AuditReportsPage() {
               The rest of your compliance workflow
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {RELATED.map((r) => (
                 <Link
                   key={r.slug}
                   href={`/features/${r.slug}`}
-                  className="group bg-navy-light border border-white/8 hover:border-accent/30 rounded-2xl p-7 transition-colors flex flex-col gap-3"
+                  className="group bg-navy-light border border-white/8 hover:border-accent/30 rounded-2xl p-8 transition-colors flex flex-col gap-3"
                 >
                   <div
                     className="w-10 h-10 rounded-[9px] flex items-center justify-center shrink-0"
@@ -406,7 +406,7 @@ export default function AuditReportsPage() {
                     <r.icon size={18} className="text-accent-bright" aria-hidden="true" />
                   </div>
                   <h3 className="text-[15px] font-semibold text-white tracking-tight">{r.title}</h3>
-                  <p className="text-sm text-gray-500 leading-relaxed font-light flex-1">{r.desc}</p>
+                  <p className="text-[15px] text-gray-400 leading-relaxed font-light flex-1">{r.desc}</p>
                   <span className="inline-flex items-center gap-1.5 text-[13px] font-medium text-accent-bright mt-1">
                     Learn more
                     <ArrowRight
