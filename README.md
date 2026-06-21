@@ -13,6 +13,7 @@ Built and operated by **TrusTrak Solutions Ltd**, London, UK.
 - `next/font/google` — Instrument Serif (display) + DM Sans (body)
 - `@vercel/analytics` — cookieless page-view analytics
 - `@vercel/speed-insights` — Core Web Vitals monitoring
+- `react-icons` — brand SVG icons (Si set) for the ToolLogos social proof strip
 
 ## Project layout
 

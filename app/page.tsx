@@ -1,6 +1,7 @@
 import { Nav } from "./_components/Nav";
 import { Hero } from "./_components/Hero";
 import { DashboardMockup } from "./_components/DashboardMockup";
+import { ToolLogos } from "./_components/ToolLogos";
 import { FrameworkLogos } from "./_components/FrameworkLogos";
 import { Features } from "./_components/Features";
 import { Frameworks } from "./_components/Frameworks";
@@ -15,6 +16,7 @@ export default function LandingPage() {
       <main className="flex flex-col">
         <Hero />
         <DashboardMockup />
+        <ToolLogos />
         <FrameworkLogos />
         <Features />
         <Frameworks />
