@@ -30,7 +30,7 @@ export function ToolLogos() {
     <section className="py-16 px-6 border-y border-white/8 text-center">
       <FadeUp>
         <p className="text-xs font-medium text-gray-500 uppercase tracking-widest mb-10">
-          Built for the teams already using
+          Trusted by
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-10 md:gap-14">
