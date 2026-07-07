@@ -20,7 +20,7 @@ const FRAMEWORKS = [
     summary:
       "The international standard for information security management systems (ISMS). The most recognised framework for enterprise security certification.",
     details: [
-      "114 Annex A controls across 14 domains",
+      "93 Annex A controls across 4 themes",
       "Covers risk assessment, access control, cryptography, and incident response",
       "Required by many enterprise procurement and vendor security reviews",
       "Certification issued by accredited third-party auditors",
